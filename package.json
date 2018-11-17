@@ -1,21 +1,17 @@
 {
   "name": "wtq-node",
-  "version": "0.1.0",
-  "main": "src/index.js",
-  "author": "Clinton Langosch <clinton.langosch@gmail.com>",
-  "license": "MIT",
+  "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "apollo-server-express": "^2.2.2",
-    "deep-assign": "^3.0.0",
-    "express": "^4.16.4",
-    "graphql": "^14.0.2",
-    "graphql-tools": "^4.0.3"
-  },
+  "workspaces": [
+    "services/*"
+  ],
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "gulp": "^4.0.0"
+    "gulp": "^4.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-eslint": "^5.0.0",
+    "lerna": "^3.4.3"
   }
 }
