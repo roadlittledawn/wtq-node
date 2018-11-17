@@ -6,7 +6,7 @@ services:
     volumes:
       - .:/api:cached
     working_dir: /api
-    entrypoint: node src/server
+    entrypoint: node src/index
     depends_on:
       - mongodb
     environment:
