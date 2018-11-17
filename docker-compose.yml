@@ -1,0 +1,25 @@
+version: '3'
+services:
+  api:
+    tty: true
+    image: node:10.13
+    volumes:
+      - .:/api:cached
+    working_dir: /api
+    entrypoint: node src/server
+    depends_on:
+      - mongodb
+    environment:
+      NODE_ENV: development
+      MONGO_DSN: mongodb://mongodb:27017
+    ports:
+      - "8001:80"
+  mongodb:
+    tty: true
+    image: mongo:3.6
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "8000:27017"
+volumes:
+  mongodb: {}
