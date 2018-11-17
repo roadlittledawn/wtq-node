@@ -11,7 +11,7 @@ services:
       - mongodb
     environment:
       NODE_ENV: development
-      MONGO_DSN: mongodb://mongodb:27017
+      MONGO_DSN: mongodb://mongodb:27017/wtq
     ports:
       - "8001:80"
   mongodb:
