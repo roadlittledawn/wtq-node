@@ -1,0 +1,8 @@
+{
+  "name": "wtq-node",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "author": "Clinton Langosch <clinton.langosch@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
