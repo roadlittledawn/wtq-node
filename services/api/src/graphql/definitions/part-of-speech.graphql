@@ -1,9 +1,12 @@
 type Query {
   partOfSpeech(input: PartOfSpeechInput!): PartOfSpeech
+  allPartsOfSpeech: [PartOfSpeech]
 }
 
 type Mutation {
   createPartOfSpeech(input: CreatePartOfSpeechInput!): PartOfSpeech!
+  updatePartOfSpeech(input: UpdatePartOfSpeechInput!): PartOfSpeech!
+  deletePartOfSpeech(input: DeletePartOfSpeechInput!): Boolean!
 }
 
 type PartOfSpeech {
@@ -17,4 +20,17 @@ input PartOfSpeechInput {
 
 input CreatePartOfSpeechInput {
   name: String!
+}
+
+input UpdatePartOfSpeechInput {
+  id: String!
+  payload: UpdatePartOfSpeechPayload!
+}
+
+input UpdatePartOfSpeechPayload {
+  name: String!
+}
+
+input DeletePartOfSpeechInput {
+  id: String!
 }
