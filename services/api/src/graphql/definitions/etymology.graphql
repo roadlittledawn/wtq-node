@@ -1,0 +1,36 @@
+type Query {
+  etymology(input: EtymologyInput!): Etymology
+  allEtymologies: [Etymology]
+}
+
+type Mutation {
+  createEtymology(input: CreateEtymologyInput!): Etymology!
+  updateEtymology(input: UpdateEtymologyInput!): Etymology!
+  deleteEtymology(input: DeleteEtymologyInput!): Boolean!
+}
+
+type Etymology {
+  id: String!
+  name: String!
+}
+
+input EtymologyInput {
+  id: String!
+}
+
+input CreateEtymologyInput {
+  name: String!
+}
+
+input UpdateEtymologyInput {
+  id: String!
+  payload: UpdateEtymologyPayload!
+}
+
+input UpdateEtymologyPayload {
+  name: String!
+}
+
+input DeleteEtymologyInput {
+  id: String!
+}

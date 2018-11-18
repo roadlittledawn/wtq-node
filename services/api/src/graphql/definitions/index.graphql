@@ -1,4 +1,5 @@
-# import Mutation.*, * from 'part-of-speech.graphql'
+# import Query.*, Mutation.*, * from 'part-of-speech.graphql'
+# import Query.*, Mutation.*, * from 'etymology.graphql'
 
 type Query {
   ping: String!
