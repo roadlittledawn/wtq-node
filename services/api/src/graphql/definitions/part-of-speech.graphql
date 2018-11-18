@@ -1,0 +1,12 @@
+type Mutation {
+  createPartOfSpeech(input: CreatePartOfSpeechInput!): PartOfSpeech!
+}
+
+type PartOfSpeech {
+  id: String!
+  name: String!
+}
+
+input CreatePartOfSpeechInput {
+  name: String!
+}

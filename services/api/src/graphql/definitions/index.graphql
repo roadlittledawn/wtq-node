@@ -1,9 +1,5 @@
+# import Mutation.*, * from 'part-of-speech.graphql'
+
 type Query {
   ping: String!
-}
-
-
-type PartOfSpeech {
-  id: String!
-  name: String!
 }
