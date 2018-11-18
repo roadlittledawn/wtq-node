@@ -1,3 +1,7 @@
+type Query {
+  partOfSpeech(input: PartOfSpeechInput!): PartOfSpeech
+}
+
 type Mutation {
   createPartOfSpeech(input: CreatePartOfSpeechInput!): PartOfSpeech!
 }
@@ -5,6 +9,10 @@ type Mutation {
 type PartOfSpeech {
   id: String!
   name: String!
+}
+
+input PartOfSpeechInput {
+  id: String!
 }
 
 input CreatePartOfSpeechInput {
