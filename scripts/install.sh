@@ -3,4 +3,5 @@ docker-compose run \
   --rm \
   --no-deps \
   --entrypoint yarn \
-  api
+  api \
+  install
