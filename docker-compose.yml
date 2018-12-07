@@ -6,12 +6,14 @@ services:
     volumes:
       - .:/app:cached
       - ./node_modules:/app/node_modules:delegated
+      - yarn-cache:/.yarn-cache
     working_dir: /app/services/api
     entrypoint: "yarn"
     command: ["start"]
     depends_on:
       - mongodb
     environment:
+      YARN_CACHE_FOLDER: /.yarn-cache
       NODE_ENV: development
       MONGO_DSN: mongodb://mongodb:27017/wtq
     ports:
@@ -25,3 +27,4 @@ services:
       - "8000:27017"
 volumes:
   mongodb: {}
+  yarn-cache: {}
