@@ -1,6 +1,7 @@
 type Query {
   word(input: WordInput!): Word
   allWords: [Word]
+  wordBySlug(input: WordBySlugInput!): Word
 }
 
 type Mutation {
@@ -20,6 +21,10 @@ type Word {
 
 input WordInput {
   id: String!
+}
+
+input WordBySlugInput {
+  slug: String!
 }
 
 input CreateWordInput {

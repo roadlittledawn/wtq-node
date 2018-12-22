@@ -3,13 +3,15 @@ import Head from 'next/head';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Alert } from 'reactstrap';
+import Link from 'next/link';
 import DefaultLayout from '../layouts/Default';
 
 const allWords = gql`
-  query AllWords {
+  query WordsPage {
     allWords {
       id
       name
+      slug
       definition
       note
       partsOfSpeech {
@@ -31,9 +33,11 @@ export default () => (
         if (loading) return <p>Loading...</p>;
         if (error) return <Alert color="danger">{error.message}</Alert>;
         return data.allWords.map(word => (
-          <div key={word.id}>
-            <p>{word.name}</p>
-          </div>
+          <p key={word.id}>
+            <Link href={{ pathname: '/word', query: { slug: word.slug } }}>
+              <a>{word.name}</a>
+            </Link>
+          </p>
         ));
       }}
     </Query>

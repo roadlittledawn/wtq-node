@@ -15,6 +15,10 @@ module.exports = {
       const { id } = input;
       return Word.findById(id);
     },
+    wordBySlug: (_, { input }) => {
+      const { slug } = input;
+      return Word.findOne({ slug });
+    },
   },
   Mutation: {
     createWord: (_, { input }) => {
