@@ -26,14 +26,15 @@ services:
       - ./node_modules:/app/node_modules:delegated
       - yarn-cache:/.yarn-cache
     working_dir: /app/services/site
-    entrypoint: ["/app/node_modules/.bin/next"]
+    entrypoint: ["node"]
+    command: ["server.js"]
     depends_on:
       - api
     environment:
       YARN_CACHE_FOLDER: /.yarn-cache
       NODE_ENV: development
     ports:
-      - "8002:3000"
+      - "8002:80"
 
   mongodb:
     tty: true
