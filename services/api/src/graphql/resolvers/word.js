@@ -1,6 +1,14 @@
 const Word = require('../../models/word');
+const PartOfSpeech = require('../../models/part-of-speech');
 
 module.exports = {
+  Word: {
+    partsOfSpeech: async (word) => {
+      const parts = await PartOfSpeech.find({ _id: { $in: word.partOfSpeechIds } }) || [];
+      return parts;
+    },
+  },
+
   Query: {
     allWords: () => Word.find(),
     word: (_, { input }) => {
