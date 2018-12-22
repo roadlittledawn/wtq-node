@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import App, { Container } from 'next/app';
+import withApollo from '../apollo/withApollo';
 
-export default class MyApp extends App {
+class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
@@ -23,3 +24,5 @@ export default class MyApp extends App {
     );
   }
 }
+
+export default withApollo(MyApp);
