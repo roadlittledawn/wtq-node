@@ -30,7 +30,9 @@ export default class Example extends React.Component {
     const { isOpen } = this.state;
     return (
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <Link href="/" passHref>
+          <NavbarBrand>WTQ</NavbarBrand>
+        </Link>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
