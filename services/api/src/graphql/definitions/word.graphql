@@ -1,0 +1,45 @@
+type Query {
+  word(input: WordInput!): Word
+  allWords: [Word]
+}
+
+type Mutation {
+  createWord(input: CreateWordInput!): Word!
+  updateWord(input: UpdateWordInput!): Word!
+  deleteWord(input: DeleteWordInput!): Boolean!
+}
+
+type Word {
+  id: String!
+  name: String!
+  definition: String!
+  note: String
+  partsOfSpeech: [PartOfSpech]
+}
+
+input WordInput {
+  id: String!
+}
+
+input CreateWordInput {
+  name: String!
+  definition: String!
+  note: String
+  partOfSpeechIds: [String]
+}
+
+input UpdateWordInput {
+  id: String!
+  payload: UpdateWordPayload!
+}
+
+input UpdateWordPayload {
+  name: String!
+  definition: String!
+  note: String
+  partOfSpeechIds: [String]
+}
+
+input DeleteWordInput {
+  id: String!
+}
