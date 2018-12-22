@@ -18,7 +18,7 @@ const schema = new Schema({
   },
   partOfSpeechIds: [
     {
-      type: '',
+      type: Schema.Types.ObjectId,
       validate: {
         async validator(id) {
           const doc = await connection.model('part-of-speech').findById(id, { _id: 1 });
