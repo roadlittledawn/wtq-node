@@ -18,6 +18,10 @@ const boot = async () => {
 
   // Load custom routes.
   loadGraphQL(GRAPHQL_URL, webserver);
+  webserver.get('/word/:slug', (req, res) => {
+    const { slug } = req.params;
+    app.render(req, res, '/word', { slug });
+  });
 
   // Have next handle all others.
   webserver.get('*', (req, res) => handle(req, res));

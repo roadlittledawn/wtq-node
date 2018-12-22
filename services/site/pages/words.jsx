@@ -34,7 +34,7 @@ export default () => (
         if (error) return <Alert color="danger">{error.message}</Alert>;
         return data.allWords.map(word => (
           <p key={word.id}>
-            <Link href={{ pathname: '/word', query: { slug: word.slug } }}>
+            <Link href={`/word?slug=${word.slug}`} as={`/word/${word.slug}`}>
               <a>{word.name}</a>
             </Link>
           </p>
