@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose');
+const slug = require('slug');
 const connection = require('../connections/db');
 
 const schema = new Schema({
@@ -6,6 +7,16 @@ const schema = new Schema({
     type: String,
     required: true,
     trim: true,
+  },
+  slug: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+    set(v) {
+      if (v) return slug(v);
+      return slug(this.name);
+    },
   },
   definition: {
     type: String,

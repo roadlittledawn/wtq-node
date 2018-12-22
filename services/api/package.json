@@ -15,6 +15,7 @@
     "graphql": "^14.0.2",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.3",
-    "mongoose": "^5.3.12"
+    "mongoose": "^5.3.12",
+    "slug": "^0.9.3"
   }
 }

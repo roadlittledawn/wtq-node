@@ -12,6 +12,7 @@ type Mutation {
 type Word {
   id: String!
   name: String!
+  slug: String!
   definition: String!
   note: String
   partsOfSpeech: [PartOfSpeech]
