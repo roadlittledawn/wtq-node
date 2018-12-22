@@ -18,6 +18,23 @@ services:
       MONGO_DSN: mongodb://mongodb:27017/wtq
     ports:
       - "8001:80"
+  site:
+    tty: true
+    image: node:10.13
+    volumes:
+      - .:/app:cached
+      - ./node_modules:/app/node_modules:delegated
+      - yarn-cache:/.yarn-cache
+    working_dir: /app/services/site
+    entrypoint: ["/app/node_modules/.bin/next"]
+    depends_on:
+      - api
+    environment:
+      YARN_CACHE_FOLDER: /.yarn-cache
+      NODE_ENV: development
+    ports:
+      - "8002:3000"
+
   mongodb:
     tty: true
     image: mongo:3.6
