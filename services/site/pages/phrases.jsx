@@ -6,8 +6,8 @@ import DefaultLayout from '../layouts/Default';
 export default () => (
   <DefaultLayout>
     <Head>
-      <title>Homepage</title>
+      <title>Phrases</title>
     </Head>
-    <h1>Hello World!</h1>
+    <h1>Phrases</h1>
   </DefaultLayout>
 );
