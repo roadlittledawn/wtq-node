@@ -33,6 +33,7 @@ services:
     environment:
       YARN_CACHE_FOLDER: /.yarn-cache
       NODE_ENV: development
+      GRAPHQL_URL: http://api
     ports:
       - "8002:80"
 

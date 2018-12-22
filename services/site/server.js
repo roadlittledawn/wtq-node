@@ -1,7 +1,9 @@
 const next = require('next');
 const express = require('express');
+const loadGraphQL = require('./server/graphql');
 
-const dev = process.env.NODE_ENV !== 'production';
+const { NODE_ENV, GRAPHQL_URL } = process.env;
+const dev = NODE_ENV !== 'production';
 
 const { log } = console;
 
@@ -15,6 +17,7 @@ const boot = async () => {
   const webserver = express();
 
   // Load custom routes.
+  loadGraphQL(GRAPHQL_URL, webserver);
 
   // Have next handle all others.
   webserver.get('*', (req, res) => handle(req, res));
