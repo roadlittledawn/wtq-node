@@ -16,7 +16,7 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
-  functionIds: [
+  partOfSpeechIds: [
     {
       type: '',
       validate: {
