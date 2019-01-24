@@ -42,6 +42,7 @@ services:
     image: mongo:3.6
     volumes:
       - mongodb:/data/db
+      - ./wtq-db:/wtq-db
     ports:
       - "8000:27017"
 volumes:
