@@ -24,12 +24,14 @@ module.exports = {
     createPhrase: (_, { input }) => {
       const {
         name,
+        slug,
         definition,
         note,
         // partOfSpeechIds,
       } = input;
       return Phrase.create({
         name,
+        slug,
         definition,
         note,
         // partOfSpeechIds,
