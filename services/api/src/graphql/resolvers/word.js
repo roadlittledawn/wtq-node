@@ -25,12 +25,14 @@ module.exports = {
       const {
         name,
         definition,
+        slug,
         note,
         partOfSpeechIds,
       } = input;
       return Word.create({
         name,
         definition,
+        slug,
         note,
         partOfSpeechIds,
       });
