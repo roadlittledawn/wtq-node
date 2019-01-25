@@ -13,4 +13,5 @@ module.exports = deepAssign(
       ping: () => 'pong',
     },
   },
+  phrase,
 );
