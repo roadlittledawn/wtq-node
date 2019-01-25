@@ -39,7 +39,7 @@ input UpdatePhraseInput {
 }
 
 input UpdatePhrasePayload {
-  name: String!
+  name: String
   definition: String!
   note: String
 }
