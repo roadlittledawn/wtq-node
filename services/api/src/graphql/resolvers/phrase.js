@@ -1,12 +1,12 @@
 const Phrase = require('../../models/phrase');
-// const PartOfSpeech = require('../../models/part-of-speech');
+const topic = require('../../models/topic');
 
 module.exports = {
   Phrase: {
-    // partsOfSpeech: async (word) => {
-    //   const parts = await PartOfSpeech.find({ _id: { $in: word.partOfSpeechIds } }) || [];
-    //   return parts;
-    // },
+    topics: async (phrase) => {
+      const parts = await topic.find({ _id: { $in: phrase.topicIds } }) || [];
+      return parts;
+    },
   },
 
   Query: {
@@ -27,14 +27,14 @@ module.exports = {
         slug,
         definition,
         note,
-        // partOfSpeechIds,
+        topicIds,
       } = input;
       return Phrase.create({
         name,
         slug,
         definition,
         note,
-        // partOfSpeechIds,
+        topicIds,
       });
     },
     updatePhrase: async (_, { input }) => {
