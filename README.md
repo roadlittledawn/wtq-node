@@ -11,3 +11,6 @@ To run an interactive terminal inside the container, run `scripts/terminal.sh`.
 
 ## Adding Dependencies
 This repository utilizes Yarn workspaces. To add a package to the `api` service, execute `scripts/workspace.sh wtq-node-api add [package-name]`. Likewise, to remove a package, execute `scripts/workspace.sh wtq-node-api remove [package-name]`
+
+## GraphQL playground examples
+[https://graphqlbin.com/v2/OgLJHZ]
