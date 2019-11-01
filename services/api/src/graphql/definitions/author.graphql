@@ -1,0 +1,36 @@
+type Query {
+  author(input: AuthorInput!): Author
+  allAuthors: [Author]
+}
+
+type Mutation {
+  createAuthor(input: CreateAuthorInput!): Author!
+  updateAuthor(input: UpdateAuthorInput!): Author!
+  deleteAuthor(input: DeleteAuthorInput!): Boolean!
+}
+
+type Author {
+  id: String!
+  name: String!
+}
+
+input AuthorInput {
+  id: String!
+}
+
+input CreateAuthorInput {
+  name: String!
+}
+
+input UpdateAuthorInput {
+  id: String!
+  payload: UpdateAuthorPayload!
+}
+
+input UpdateAuthorPayload {
+  name: String!
+}
+
+input DeleteAuthorInput {
+  id: String!
+}

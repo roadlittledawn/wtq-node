@@ -5,6 +5,7 @@ const word = require('./word');
 const phrase = require('./phrase');
 const topic = require('./topic');
 const quote = require('./quote');
+const author = require('./author');
 
 
 module.exports = deepAssign(
@@ -19,4 +20,5 @@ module.exports = deepAssign(
   phrase,
   topic,
   quote,
+  author,
 );
