@@ -4,6 +4,8 @@ const partOfSpeech = require('./part-of-speech');
 const word = require('./word');
 const phrase = require('./phrase');
 const topic = require('./topic');
+const quote = require('./quote');
+
 
 module.exports = deepAssign(
   etymology,
@@ -16,4 +18,5 @@ module.exports = deepAssign(
   },
   phrase,
   topic,
+  quote,
 );

@@ -1,0 +1,51 @@
+type Query {
+  quote(input: QuoteInput!): Quote
+  allQuotes: [Quote]
+  quoteBySlug(input: QuoteBySlugInput!): Quote
+}
+
+type Mutation {
+  createQuote(input: CreateQuoteInput!): Quote!
+  updateQuote(input: UpdateQuoteInput!): Quote!
+  deleteQuote(input: DeleteQuoteInput!): Boolean!
+}
+
+type Quote {
+  id: String!
+  name: String!
+  slug: String!
+  definition: String!
+  topics: [Topic]
+  note: String
+}
+
+input QuoteInput {
+  id: String!
+}
+
+input QuoteBySlugInput {
+  slug: String!
+}
+
+input CreateQuoteInput {
+  name: String!
+  definition: String!
+  note: String
+  topicIds: [String]
+}
+
+input UpdateQuoteInput {
+  id: String!
+  payload: UpdateQuotePayload!
+}
+
+input UpdateQuotePayload {
+  name: String
+  definition: String!
+  topicIds: [String]
+  note: String
+}
+
+input DeleteQuoteInput {
+  id: String!
+}
