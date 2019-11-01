@@ -18,7 +18,7 @@ const schema = new Schema({
       return slug(this.name);
     },
   },
-  definition: {
+  body: {
     type: String,
     required: true,
     trim: true,

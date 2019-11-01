@@ -25,14 +25,14 @@ module.exports = {
       const {
         name,
         slug,
-        definition,
+        body,
         note,
         topicIds,
       } = input;
       return Quote.create({
         name,
         slug,
-        definition,
+        body,
         note,
         topicIds,
       });

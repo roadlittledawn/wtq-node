@@ -14,7 +14,7 @@ type Quote {
   id: String!
   name: String!
   slug: String!
-  definition: String!
+  body: String!
   topics: [Topic]
   note: String
 }
@@ -29,7 +29,7 @@ input QuoteBySlugInput {
 
 input CreateQuoteInput {
   name: String!
-  definition: String!
+  body: String!
   note: String
   topicIds: [String]
 }
@@ -41,7 +41,7 @@ input UpdateQuoteInput {
 
 input UpdateQuotePayload {
   name: String
-  definition: String!
+  body: String!
   topicIds: [String]
   note: String
 }
