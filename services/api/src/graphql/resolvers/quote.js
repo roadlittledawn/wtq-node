@@ -1,10 +1,15 @@
 const Quote = require('../../models/quote');
 const topic = require('../../models/topic');
+const author = require('../../models/author');
 
 module.exports = {
   Quote: {
     topics: async (quote) => {
       const parts = await topic.find({ _id: { $in: quote.topicIds } }) || [];
+      return parts;
+    },
+    author: async (quote) => {
+      const parts = await author.find({ _id: { $in: quote.authorId } }) || [];
       return parts;
     },
   },
@@ -26,6 +31,7 @@ module.exports = {
         name,
         slug,
         body,
+        authorId,
         note,
         topicIds,
       } = input;
@@ -33,6 +39,7 @@ module.exports = {
         name,
         slug,
         body,
+        authorId,
         note,
         topicIds,
       });

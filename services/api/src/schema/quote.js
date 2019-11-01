@@ -23,6 +23,11 @@ const schema = new Schema({
     required: true,
     trim: true,
   },
+  authorId: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   note: {
     type: String,
     trim: true,
