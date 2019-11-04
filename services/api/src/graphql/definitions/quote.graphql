@@ -17,6 +17,7 @@ type Quote {
   body: String!
   author: Author
   topics: [Topic]
+  tones: [Tone]
   note: String
 }
 
@@ -34,6 +35,7 @@ input CreateQuoteInput {
   authorId: String!
   note: String
   topicIds: [String]
+  toneIds: [String]
 }
 
 input UpdateQuoteInput {
@@ -46,6 +48,7 @@ input UpdateQuotePayload {
   body: String
   authorId: String
   topicIds: [String]
+  toneIds: [String]
   note: String
 }
 

@@ -16,6 +16,7 @@ type Phrase {
   slug: String!
   definition: String!
   topics: [Topic]
+  tones: [Tone]
   note: String
 }
 
@@ -32,6 +33,7 @@ input CreatePhraseInput {
   definition: String!
   note: String
   topicIds: [String]
+  toneIds: [String]
 }
 
 input UpdatePhraseInput {
@@ -43,6 +45,7 @@ input UpdatePhrasePayload {
   name: String
   definition: String!
   topicIds: [String]
+  toneIds: [String]
   note: String
 }
 

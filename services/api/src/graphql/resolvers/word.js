@@ -2,6 +2,8 @@ const Word = require('../../models/word');
 const PartOfSpeech = require('../../models/part-of-speech');
 const Etymology = require('../../models/etymology');
 const Context = require('../../models/context');
+const Tone = require('../../models/tone');
+
 
 module.exports = {
   Word: {
@@ -15,6 +17,10 @@ module.exports = {
     },
     contexts: async (word) => {
       const parts = await Context.find({ _id: { $in: word.contextIds } }) || [];
+      return parts;
+    },
+    tones: async (word) => {
+      const parts = await Tone.find({ _id: { $in: word.toneIds } }) || [];
       return parts;
     },
   },
@@ -40,6 +46,7 @@ module.exports = {
         partOfSpeechIds,
         etymologyIds,
         contextIds,
+        toneIds,
       } = input;
       return Word.create({
         name,
@@ -49,6 +56,7 @@ module.exports = {
         partOfSpeechIds,
         etymologyIds,
         contextIds,
+        toneIds,
       });
     },
     updateWord: async (_, { input }) => {

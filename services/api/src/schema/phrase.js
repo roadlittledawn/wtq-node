@@ -40,6 +40,19 @@ const schema = new Schema({
       },
     },
   ],
+  toneIds: [
+    {
+      type: Schema.Types.ObjectId,
+      validate: {
+        async validator(id) {
+          const doc = await connection.model('tone').findById(id, { _id: 1 });
+          if (doc) return true;
+          return false;
+        },
+        message: 'No tone was found for ID {VALUE}',
+      },
+    },
+  ],
 }, {
   timestamps: true,
 });

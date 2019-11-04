@@ -19,6 +19,7 @@ type Word {
   partsOfSpeech: [PartOfSpeech]
   etymologies: [Etymology]
   contexts: [Context]
+  tones: [Tone]
 }
 
 input WordInput {
@@ -36,6 +37,7 @@ input CreateWordInput {
   partOfSpeechIds: [String]
   etymologyIds: [String]
   contextIds: [String]
+  toneIds: [String]
 }
 
 input UpdateWordInput {
@@ -50,6 +52,7 @@ input UpdateWordPayload {
   partOfSpeechIds: [String]
   etymologyIds: [String]
   contextIds: [String]
+  toneIds: [String]
 }
 
 input DeleteWordInput {

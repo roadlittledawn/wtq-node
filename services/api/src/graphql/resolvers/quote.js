@@ -1,6 +1,7 @@
 const Quote = require('../../models/quote');
 const topic = require('../../models/topic');
 const author = require('../../models/author');
+const Tone = require('../../models/tone');
 
 module.exports = {
   Quote: {
@@ -10,6 +11,10 @@ module.exports = {
     },
     author: async (quote) => {
       const parts = await author.findById(quote.authorId) || '';
+      return parts;
+    },
+    tones: async (quote) => {
+      const parts = await Tone.find({ _id: { $in: quote.toneIds } }) || [];
       return parts;
     },
   },
@@ -34,6 +39,7 @@ module.exports = {
         authorId,
         note,
         topicIds,
+        toneIds,
       } = input;
       return Quote.create({
         name,
@@ -42,6 +48,7 @@ module.exports = {
         authorId,
         note,
         topicIds,
+        toneIds,
       });
     },
     updateQuote: async (_, { input }) => {
