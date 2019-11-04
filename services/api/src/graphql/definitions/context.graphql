@@ -1,0 +1,36 @@
+type Query {
+  context(input: ContextInput!): Context
+  allContexts: [Context]
+}
+
+type Mutation {
+  createContext(input: CreateContextInput!): Context!
+  updateContext(input: UpdateContextInput!): Context!
+  deleteContext(input: DeleteContextInput!): Boolean!
+}
+
+type Context {
+  id: String!
+  name: String!
+}
+
+input ContextInput {
+  id: String!
+}
+
+input CreateContextInput {
+  name: String!
+}
+
+input UpdateContextInput {
+  id: String!
+  payload: UpdateContextPayload!
+}
+
+input UpdateContextPayload {
+  name: String!
+}
+
+input DeleteContextInput {
+  id: String!
+}

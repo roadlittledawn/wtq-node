@@ -40,6 +40,32 @@ const schema = new Schema({
       },
     },
   ],
+  etymologyIds: [
+    {
+      type: Schema.Types.ObjectId,
+      validate: {
+        async validator(id) {
+          const doc = await connection.model('etymology').findById(id, { _id: 1 });
+          if (doc) return true;
+          return false;
+        },
+        message: 'No etymology was found for ID {VALUE}',
+      },
+    },
+  ],
+  contextIds: [
+    {
+      type: Schema.Types.ObjectId,
+      validate: {
+        async validator(id) {
+          const doc = await connection.model('context').findById(id, { _id: 1 });
+          if (doc) return true;
+          return false;
+        },
+        message: 'No context was found for ID {VALUE}',
+      },
+    },
+  ],
 }, {
   timestamps: true,
 });

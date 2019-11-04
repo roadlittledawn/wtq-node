@@ -6,19 +6,16 @@ const phrase = require('./phrase');
 const topic = require('./topic');
 const quote = require('./quote');
 const author = require('./author');
+const context = require('./context');
 
 
 module.exports = deepAssign(
   etymology,
   partOfSpeech,
   word,
-  {
-    Query: {
-      ping: () => 'pong',
-    },
-  },
   phrase,
   topic,
   quote,
   author,
+  context,
 );

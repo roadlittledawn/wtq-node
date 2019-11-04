@@ -17,6 +17,8 @@ type Word {
   definition: String!
   note: String
   partsOfSpeech: [PartOfSpeech]
+  etymologies: [Etymology]
+  contexts: [Context]
 }
 
 input WordInput {
@@ -32,6 +34,8 @@ input CreateWordInput {
   definition: String!
   note: String
   partOfSpeechIds: [String]
+  etymologyIds: [String]
+  contextIds: [String]
 }
 
 input UpdateWordInput {
@@ -40,10 +44,12 @@ input UpdateWordInput {
 }
 
 input UpdateWordPayload {
-  name: String!
-  definition: String!
+  name: String
+  definition: String
   note: String
   partOfSpeechIds: [String]
+  etymologyIds: [String]
+  contextIds: [String]
 }
 
 input DeleteWordInput {

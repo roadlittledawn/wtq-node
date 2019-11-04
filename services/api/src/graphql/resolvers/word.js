@@ -1,10 +1,20 @@
 const Word = require('../../models/word');
 const PartOfSpeech = require('../../models/part-of-speech');
+const Etymology = require('../../models/etymology');
+const Context = require('../../models/context');
 
 module.exports = {
   Word: {
     partsOfSpeech: async (word) => {
       const parts = await PartOfSpeech.find({ _id: { $in: word.partOfSpeechIds } }) || [];
+      return parts;
+    },
+    etymologies: async (word) => {
+      const parts = await Etymology.find({ _id: { $in: word.etymologyIds } }) || [];
+      return parts;
+    },
+    contexts: async (word) => {
+      const parts = await Context.find({ _id: { $in: word.contextIds } }) || [];
       return parts;
     },
   },
@@ -28,6 +38,8 @@ module.exports = {
         slug,
         note,
         partOfSpeechIds,
+        etymologyIds,
+        contextIds,
       } = input;
       return Word.create({
         name,
@@ -35,6 +47,8 @@ module.exports = {
         slug,
         note,
         partOfSpeechIds,
+        etymologyIds,
+        contextIds,
       });
     },
     updateWord: async (_, { input }) => {
