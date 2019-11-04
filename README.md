@@ -20,6 +20,8 @@ This repository utilizes Yarn workspaces. To add a package to the `api` service,
 ## GraphQL playground examples
 [https://graphqlbin.com/v2/OgLJHZ]
 
+[https://graphqlbin.com/v2/NYRnI9]
+
 ## How to add new type to GraphQL
 It can be a little tricky adding new types to GraphQL. You must update several files and names and fields must line up accordingly. I haven't mapped those yet because I mostly have just copied and pasted.
 
