@@ -6,6 +6,7 @@
 # import Query.*, Mutation.*, * from 'quote.graphql'
 # import Query.*, Mutation.*, * from 'author.graphql'
 # import Query.*, Mutation.*, * from 'context.graphql'
+# import Query.*, Mutation.*, * from 'tone.graphql'
 
 type Query {
   ping: String!

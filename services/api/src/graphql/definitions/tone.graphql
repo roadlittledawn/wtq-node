@@ -1,0 +1,36 @@
+type Query {
+  tone(input: ToneInput!): Tone
+  allTones: [Tone]
+}
+
+type Mutation {
+  createTone(input: CreateToneInput!): Tone!
+  updateTone(input: UpdateToneInput!): Tone!
+  deleteTone(input: DeleteToneInput!): Boolean!
+}
+
+type Tone {
+  id: String!
+  name: String!
+}
+
+input ToneInput {
+  id: String!
+}
+
+input CreateToneInput {
+  name: String!
+}
+
+input UpdateToneInput {
+  id: String!
+  payload: UpdateTonePayload!
+}
+
+input UpdateTonePayload {
+  name: String!
+}
+
+input DeleteToneInput {
+  id: String!
+}

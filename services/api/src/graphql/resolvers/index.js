@@ -7,7 +7,7 @@ const topic = require('./topic');
 const quote = require('./quote');
 const author = require('./author');
 const context = require('./context');
-
+const tone = require('./tone');
 
 module.exports = deepAssign(
   etymology,
@@ -18,4 +18,5 @@ module.exports = deepAssign(
   quote,
   author,
   context,
+  tone,
 );
