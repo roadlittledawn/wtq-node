@@ -2,9 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { 
+import {
   Alert, Card, CardText, CardBody,
-  CardTitle, CardSubtitle, Button 
+  CardTitle,
 } from 'reactstrap';
 import Link from 'next/link';
 import DefaultLayout from '../layouts/Default';
