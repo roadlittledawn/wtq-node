@@ -9,7 +9,7 @@ module.exports = {
       return parts;
     },
     author: async (quote) => {
-      const parts = await author.find({ _id: { $in: quote.authorId } }) || [];
+      const parts = await author.findById(quote.authorId) || '';
       return parts;
     },
   },

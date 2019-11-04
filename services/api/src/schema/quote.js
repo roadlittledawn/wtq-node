@@ -24,9 +24,15 @@ const schema = new Schema({
     trim: true,
   },
   authorId: {
-    type: String,
-    required: true,
-    trim: true,
+    type: Schema.Types.ObjectId,
+    validate: {
+      async validator(id) {
+        const doc = await connection.model('author').findById(id, { _id: 1 });
+        if (doc) return true;
+        return false;
+      },
+      message: 'No author was found for ID {VALUE}',
+    },
   },
   note: {
     type: String,
