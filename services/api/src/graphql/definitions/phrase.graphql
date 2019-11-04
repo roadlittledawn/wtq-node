@@ -30,7 +30,7 @@ input PhraseBySlugInput {
 
 input CreatePhraseInput {
   name: String!
-  definition: String!
+  definition: String
   note: String
   topicIds: [String]
   toneIds: [String]
@@ -43,7 +43,7 @@ input UpdatePhraseInput {
 
 input UpdatePhrasePayload {
   name: String
-  definition: String!
+  definition: String
   topicIds: [String]
   toneIds: [String]
   note: String
