@@ -19,6 +19,7 @@ type Phrase {
   tones: [Tone]
   contexts: [Context]
   note: String
+  source: String
 }
 
 input PhraseInput {
@@ -37,6 +38,7 @@ input CreatePhraseInput {
   toneIds: [String]
   contextIds: [String]
   note: String
+  source: String
 }
 
 input UpdatePhraseInput {
@@ -51,6 +53,7 @@ input UpdatePhrasePayload {
   toneIds: [String]
   contextIds: [String]
   note: String
+  source: String
 }
 
 input DeletePhraseInput {

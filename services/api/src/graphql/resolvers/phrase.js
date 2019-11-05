@@ -40,6 +40,7 @@ module.exports = {
         topicIds,
         toneIds,
         contextIds,
+        source,
       } = input;
       return Phrase.create({
         name,
@@ -49,6 +50,7 @@ module.exports = {
         topicIds,
         toneIds,
         contextIds,
+        source,
       });
     },
     updatePhrase: async (_, { input }) => {

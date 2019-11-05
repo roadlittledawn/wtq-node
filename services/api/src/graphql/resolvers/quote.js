@@ -38,6 +38,7 @@ module.exports = {
         body,
         authorId,
         note,
+        source,
         topicIds,
         toneIds,
       } = input;
@@ -47,6 +48,7 @@ module.exports = {
         body,
         authorId,
         note,
+        source,
         topicIds,
         toneIds,
       });

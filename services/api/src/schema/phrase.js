@@ -27,6 +27,10 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
+  source: {
+    type: String,
+    trim: true,
+  },
   topicIds: [
     {
       type: Schema.Types.ObjectId,

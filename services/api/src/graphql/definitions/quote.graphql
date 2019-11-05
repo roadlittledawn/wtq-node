@@ -19,6 +19,7 @@ type Quote {
   topics: [Topic]
   tones: [Tone]
   note: String
+  source: String
 }
 
 input QuoteInput {
@@ -36,6 +37,7 @@ input CreateQuoteInput {
   note: String
   topicIds: [String]
   toneIds: [String]
+  source: String
 }
 
 input UpdateQuoteInput {
@@ -50,6 +52,7 @@ input UpdateQuotePayload {
   topicIds: [String]
   toneIds: [String]
   note: String
+  source: String
 }
 
 input DeleteQuoteInput {
