@@ -17,6 +17,7 @@ type Phrase {
   definition: String!
   topics: [Topic]
   tones: [Tone]
+  contexts: [Context]
   note: String
 }
 
@@ -34,6 +35,8 @@ input CreatePhraseInput {
   note: String
   topicIds: [String]
   toneIds: [String]
+  contextIds: [String]
+  note: String
 }
 
 input UpdatePhraseInput {
@@ -46,6 +49,7 @@ input UpdatePhrasePayload {
   definition: String
   topicIds: [String]
   toneIds: [String]
+  contextIds: [String]
   note: String
 }
 

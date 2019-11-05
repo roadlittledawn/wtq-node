@@ -53,6 +53,19 @@ const schema = new Schema({
       },
     },
   ],
+  contextIds: [
+    {
+      type: Schema.Types.ObjectId,
+      validate: {
+        async validator(id) {
+          const doc = await connection.model('context').findById(id, { _id: 1 });
+          if (doc) return true;
+          return false;
+        },
+        message: 'No contexts were found for ID {VALUE}',
+      },
+    },
+  ],
 }, {
   timestamps: true,
 });

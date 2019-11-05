@@ -1,6 +1,7 @@
 const Phrase = require('../../models/phrase');
 const topic = require('../../models/topic');
 const Tone = require('../../models/tone');
+const Context = require('../../models/context');
 
 module.exports = {
   Phrase: {
@@ -10,6 +11,10 @@ module.exports = {
     },
     tones: async (phrase) => {
       const parts = await Tone.find({ _id: { $in: phrase.toneIds } }) || [];
+      return parts;
+    },
+    contexts: async (phrase) => {
+      const parts = await Context.find({ _id: { $in: phrase.contextIds } }) || [];
       return parts;
     },
   },
@@ -34,6 +39,7 @@ module.exports = {
         note,
         topicIds,
         toneIds,
+        contextIds,
       } = input;
       return Phrase.create({
         name,
@@ -42,6 +48,7 @@ module.exports = {
         note,
         topicIds,
         toneIds,
+        contextIds,
       });
     },
     updatePhrase: async (_, { input }) => {
