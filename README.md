@@ -39,32 +39,32 @@ General steps are:
 # Content model
 The site has the following 3 types of core content called entries, each with their own properties (some are shared between all/some of them, others are distinct to the entry):
 * words
-  * * id
-  * * name
-  * * slug
-  * * definition
-  * * note
-  * * partsOfSpeech
-  * * etymologies
-  * * contexts
-  * * tones
+  * id
+  * name
+  * slug
+  * definition
+  * note
+  * partsOfSpeech
+  * etymologies
+  * contexts
+  * tones
 * phrases
-  * * id
-  * * name
-  * * slug
-  * * definition
-  * * topics
-  * * tones
-  * * contexts
-  * * note
-  * * source
+  * id
+  * name
+  * slug
+  * definition
+  * topics
+  * tones
+  * contexts
+  * note
+  * source
 * quotes
-  * * id
-  * * name
-  * * slug
-  * * body
-  * * author
-  * * topics
-  * * tones
-  * * note
-  * * source
+  * id
+  * name
+  * slug
+  * body
+  * author
+  * topics
+  * tones
+  * note
+  * source
