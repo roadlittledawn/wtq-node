@@ -28,6 +28,11 @@ const boot = async () => {
     app.render(req, res, '/phrase', { slug });
   });
 
+  webserver.get('/quote/:slug', (req, res) => {
+    const { slug } = req.params;
+    app.render(req, res, '/quote', { slug });
+  });
+
   // Have next handle all others.
   webserver.get('*', (req, res) => handle(req, res));
 
