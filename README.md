@@ -35,3 +35,36 @@ General steps are:
   4. Update graphql resolvers index in `/graphql/resolvers`
   5. Add a schema for your new type in `/schema` (what is this for? mongoose and connecting to mongo?)
   6. Add a model for your new type in `/models`. This essentially defines the mongoDB collection name and brings in the schema. (what is this for? mongoose and connecting to mongo?)
+
+# Content model
+The site has the following 3 types of core content called entries, each with their own properties (some are shared between all/some of them, others are distinct to the entry):
+* words
+  * * id
+  * * name
+  * * slug
+  * * definition
+  * * note
+  * * partsOfSpeech
+  * * etymologies
+  * * contexts
+  * * tones
+* phrases
+  * * id
+  * * name
+  * * slug
+  * * definition
+  * * topics
+  * * tones
+  * * contexts
+  * * note
+  * * source
+* quotes
+  * * id
+  * * name
+  * * slug
+  * * body
+  * * author
+  * * topics
+  * * tones
+  * * note
+  * * source
