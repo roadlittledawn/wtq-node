@@ -29,6 +29,10 @@ module.exports = {
       const { slug } = input;
       return Phrase.findOne({ slug });
     },
+    phrasesByCategory: (_, { input }) => {
+      const { fieldName, id } = input;
+      return Phrase.find({ [fieldName]: id });
+    },
   },
   Mutation: {
     createPhrase: (_, { input }) => {

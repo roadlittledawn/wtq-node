@@ -29,6 +29,10 @@ module.exports = {
       const { slug } = input;
       return Quote.findOne({ slug });
     },
+    quotesByCategory: (_, { input }) => {
+      const { fieldName, id } = input;
+      return Quote.find({ [fieldName]: id });
+    },
   },
   Mutation: {
     createQuote: (_, { input }) => {

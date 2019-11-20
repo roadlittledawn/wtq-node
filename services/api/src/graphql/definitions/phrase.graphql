@@ -2,6 +2,7 @@ type Query {
   phrase(input: PhraseInput!): Phrase
   allPhrases: [Phrase]
   phraseBySlug(input: PhraseBySlugInput!): Phrase
+  phrasesByCategory(input: PhrasesByCategoryInput!): [Phrase]
 }
 
 type Mutation {
@@ -28,6 +29,11 @@ input PhraseInput {
 
 input PhraseBySlugInput {
   slug: String!
+}
+
+input PhrasesByCategoryInput {
+  fieldName: String!
+  id: String!
 }
 
 input CreatePhraseInput {

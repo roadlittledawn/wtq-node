@@ -2,6 +2,7 @@ type Query {
   word(input: WordInput!): Word
   allWords: [Word]
   wordBySlug(input: WordBySlugInput!): Word
+  wordsByCategory(input: WordsByCategoryInput!): [Word]
 }
 
 type Mutation {
@@ -28,6 +29,11 @@ input WordInput {
 
 input WordBySlugInput {
   slug: String!
+}
+
+input WordsByCategoryInput {
+  fieldName: String!
+  id: String!
 }
 
 input CreateWordInput {

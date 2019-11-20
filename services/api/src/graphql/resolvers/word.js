@@ -35,6 +35,10 @@ module.exports = {
       const { slug } = input;
       return Word.findOne({ slug });
     },
+    wordsByCategory: (_, { input }) => {
+      const { fieldName, id } = input;
+      return Word.find({ [fieldName]: id });
+    },
   },
   Mutation: {
     createWord: (_, { input }) => {
