@@ -20,6 +20,10 @@ mutation CreateWord($input: CreateWordInput!) {
 
 const CreateWordPage = () => (
   <DefaultLayout>
+    <Head>
+      <title>Create Word</title>
+    </Head>
+    <h1>Add a Word</h1>
     <WordForm />
   </DefaultLayout>
 );
