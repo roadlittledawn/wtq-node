@@ -12,16 +12,23 @@ const wordBySlug = gql`
     wordBySlug(input: $input) {
       id
       name
+      definition
       slug
+      note
       partsOfSpeech {
         name
         id
       }
+      etymologies {
+        name
+        id
+      }
       contexts {
+        id
         name
       }
-      definition
       tones {
+        id
         name
       }
     }
@@ -35,6 +42,7 @@ const WordPage = ({ slug }) => (
         if (loading) return <p>Loading...</p>;
         if (error) return <Alert color="danger">{error.message}</Alert>;
         const { wordBySlug: word } = data;
+        console.log(word);
         return (
           <>
             <Head>
@@ -43,12 +51,16 @@ const WordPage = ({ slug }) => (
             <h1>{word.name}</h1>
             <h2>Definition</h2>
             <p>{word.definition}</p>
-            {word.partsOfSpeech && <h2>Part of Speech</h2>}
+            {word.partsOfSpeech.length > 0 && <h2>Part of Speech</h2>}
             {word.partsOfSpeech && word.partsOfSpeech.map(item => <><p>{item.name}</p></>)}
-            {word.partsOfSpeech && <h2>Context</h2>}
+            {word.etymologies.length > 0 && <h2>Etymology</h2>}
+            {word.etymologies && word.etymologies.map(item => <><p>{item.name}</p></>)}
+            {word.contexts.length > 0 && <h2>Context</h2>}
             {word.contexts && word.contexts.map(item => <><p>{item.name}</p></>)}
-            {word.partsOfSpeech && <h2>Tone</h2>}
+            {word.tones.length > 0 && <h2>Tone</h2>}
             {word.tones && word.tones.map(item => <><p>{item.name}</p></>)}
+            {word.note && <h2>Note</h2>}
+            {word.note && word.note}
           </>
         );
       }}
