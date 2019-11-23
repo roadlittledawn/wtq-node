@@ -39,7 +39,6 @@ input PhrasesByCategoryInput {
 input CreatePhraseInput {
   name: String!
   definition: String
-  note: String
   topicIds: [String]
   toneIds: [String]
   contextIds: [String]
