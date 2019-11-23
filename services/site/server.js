@@ -19,7 +19,7 @@ const boot = async () => {
   // Load custom routes.
   loadGraphQL(GRAPHQL_URL, webserver);
   webserver.get('/word/create', (req, res) => {
-    app.render(req, res, '/word-create');
+    app.render(req, res, '/wordCreate');
   });
 
   webserver.get('/word/:slug', (req, res) => {
@@ -27,9 +27,17 @@ const boot = async () => {
     app.render(req, res, '/word', { slug });
   });
 
+  webserver.get('/phrase/create', (req, res) => {
+    app.render(req, res, '/phrase-create');
+  });
+
   webserver.get('/phrase/:slug', (req, res) => {
     const { slug } = req.params;
     app.render(req, res, '/phrase', { slug });
+  });
+
+  webserver.get('/quote/create', (req, res) => {
+    app.render(req, res, '/quote-create');
   });
 
   webserver.get('/quote/:slug', (req, res) => {
