@@ -62,6 +62,9 @@ export default class WordForm extends React.Component {
       loading: false,
       error: null,
       selectedPartsOfSpeech: null,
+      selectedContexts: null,
+      selectedTones: null,
+      selectedEtymologies: null,
       CreateWordInput: {
         name: '',
         definition: '',
@@ -112,47 +115,46 @@ export default class WordForm extends React.Component {
     this.setState({ selectedPartsOfSpeech });
   }
 
-  handleChangeEtymologyIds(event) {
+  handleChangeEtymologyIds(selectedEtymologies) {
     const { CreateWordInput } = { ...this.state };
     const currentState = CreateWordInput;
-    const options = event.target.options;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
+    if (selectedEtymologies) {
+      const idArray = selectedEtymologies.map(item => item.value);
+      currentState.etymologyIds = idArray;
     }
-    currentState.etymologyIds = value;
+    if (selectedEtymologies === null) {
+      currentState.etymologyIds = [];
+    }
     this.setState({ CreateWordInput: currentState });
+    this.setState({ selectedEtymologies });
   }
 
-  handleChangeContextIds(event) {
+  handleChangeContextIds(selectedContexts) {
     const { CreateWordInput } = { ...this.state };
     const currentState = CreateWordInput;
-    const options = event.target.options;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
+    if (selectedContexts) {
+      const idArray = selectedContexts.map(item => item.value);
+      currentState.contextIds = idArray;
     }
-    currentState.contextIds = value;
+    if (selectedContexts === null) {
+      currentState.contextIds = [];
+    }
     this.setState({ CreateWordInput: currentState });
+    this.setState({ selectedContexts });
   }
 
-  handleChangeToneIds(event) {
+  handleChangeToneIds(selectedTones) {
     const { CreateWordInput } = { ...this.state };
     const currentState = CreateWordInput;
-    const options = event.target.options;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-
-      }
+    if (selectedTones) {
+      const idArray = selectedTones.map(item => item.value);
+      currentState.toneIds = idArray;
     }
-    currentState.toneIds = value;
+    if (selectedTones === null) {
+      currentState.toneIds = [];
+    }
     this.setState({ CreateWordInput: currentState });
+    this.setState({ selectedTones });
   }
 
   handleChangeNote(event) {
@@ -166,6 +168,9 @@ export default class WordForm extends React.Component {
   render() {
     const {
       selectedPartsOfSpeech,
+      selectedContexts,
+      selectedTones,
+      selectedEtymologies,
       CreateWordInput,
     } = this.state;
     return (
@@ -193,59 +198,65 @@ export default class WordForm extends React.Component {
             placeholder="Enter custom definition"
           />
           <Label for="partOfSpeechIds">Part of Speech</Label>
-          {/* <Input onChange={this.handleChangepartOfSpeechIds} type="select" name="partOfSpeechIds" id="partOfSpeechIds" multiple> */}
-            <Query query={AllPartsOfSpeech}>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <Alert color="danger">{error.message}</Alert>;
-                return (
-                  // console.log();
-                  <ReactSelect
-                    isMulti
-                    value={selectedPartsOfSpeech}
-                    onChange={this.handleChangepartOfSpeechIds}
-                    options={data.allPartsOfSpeech.map(item => ({ value: item.id, label: item.name }))}
-                  />
-                );
-              }}
-            </Query>
-          {/* </Input> */}
+          <Query query={AllPartsOfSpeech}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <Alert color="danger">{error.message}</Alert>;
+              return (
+                <ReactSelect
+                  isMulti
+                  value={selectedPartsOfSpeech}
+                  onChange={this.handleChangepartOfSpeechIds}
+                  options={data.allPartsOfSpeech.map(item => ({ value: item.id, label: item.name }))}
+                />
+              );
+            }}
+          </Query>
           <Label for="etymologyIds">Etymology</Label>
-          <Input onChange={this.handleChangeEtymologyIds} type="select" name="etymologyIds" id="etymologyIds" multiple>
-            <Query query={AllEtymologies}>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <Alert color="danger">{error.message}</Alert>;
-                return data.allEtymologies.map(etymology => (
-                  <option value={etymology.id}>{etymology.name}</option>
-                ));
-              }}
-            </Query>
-          </Input>
+          <Query query={AllEtymologies}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <Alert color="danger">{error.message}</Alert>;
+              return (
+                <ReactSelect
+                  isMulti
+                  value={selectedEtymologies}
+                  onChange={this.handleChangeEtymologyIds}
+                  options={data.allEtymologies.map(item => ({ value: item.id, label: item.name }))}
+                />
+              );
+            }}
+          </Query>
           <Label for="contextIds">Context</Label>
-          <Input onChange={this.handleChangeContextIds} type="select" name="contextIds" id="contextIds" multiple>
-            <Query query={AllContexts}>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <Alert color="danger">{error.message}</Alert>;
-                return data.allContexts.map(context => (
-                  <option value={context.id}>{context.name}</option>
-                ));
-              }}
-            </Query>
-          </Input>
+          <Query query={AllContexts}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <Alert color="danger">{error.message}</Alert>;
+              return (
+                <ReactSelect
+                  isMulti
+                  value={selectedContexts}
+                  onChange={this.handleChangeContextIds}
+                  options={data.allContexts.map(item => ({ value: item.id, label: item.name }))}
+                />
+              );
+            }}
+          </Query>
           <Label for="toneIds">Tone</Label>
-          <Input onChange={this.handleChangeToneIds} type="select" name="toneIds" id="toneIds" multiple>
-            <Query query={AllTones}>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <Alert color="danger">{error.message}</Alert>;
-                return data.allTones.map(tone => (
-                  <option value={tone.id}>{tone.name}</option>
-                ));
-              }}
-            </Query>
-          </Input>
+          <Query query={AllTones}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <Alert color="danger">{error.message}</Alert>;
+              return (
+                <ReactSelect
+                  isMulti
+                  value={selectedTones}
+                  onChange={this.handleChangeToneIds}
+                  options={data.allTones.map(item => ({ value: item.id, label: item.name }))}
+                />
+              );
+            }}
+          </Query>
           <Label for="note">Notes</Label>
           <Input
             type="textarea"
