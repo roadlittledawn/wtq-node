@@ -61,6 +61,7 @@ export default class WordForm extends React.Component {
     this.state = {
       loading: false,
       error: null,
+      selectedPartsOfSpeech: null,
       CreateWordInput: {
         name: '',
         definition: '',
@@ -97,18 +98,18 @@ export default class WordForm extends React.Component {
     this.setState({ CreateWordInput: currentState });
   }
 
-  handleChangepartOfSpeechIds(event) {
+  handleChangepartOfSpeechIds(selectedPartsOfSpeech) {
     const { CreateWordInput } = { ...this.state };
     const currentState = CreateWordInput;
-    const options = event.target.options;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
+    if (selectedPartsOfSpeech) {
+      const idArray = selectedPartsOfSpeech.map(item => item.value);
+      currentState.partOfSpeechIds = idArray;
     }
-    currentState.partOfSpeechIds = value;
+    if (selectedPartsOfSpeech === null) {
+      currentState.partOfSpeechIds = [];
+    }
     this.setState({ CreateWordInput: currentState });
+    this.setState({ selectedPartsOfSpeech });
   }
 
   handleChangeEtymologyIds(event) {
@@ -147,6 +148,7 @@ export default class WordForm extends React.Component {
     for (let i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
         value.push(options[i].value);
+
       }
     }
     currentState.toneIds = value;
@@ -163,6 +165,7 @@ export default class WordForm extends React.Component {
 
   render() {
     const {
+      selectedPartsOfSpeech,
       CreateWordInput,
     } = this.state;
     return (
@@ -190,17 +193,23 @@ export default class WordForm extends React.Component {
             placeholder="Enter custom definition"
           />
           <Label for="partOfSpeechIds">Part of Speech</Label>
-          <Input onChange={this.handleChangepartOfSpeechIds} type="select" name="partOfSpeechIds" id="partOfSpeechIds" multiple>
+          {/* <Input onChange={this.handleChangepartOfSpeechIds} type="select" name="partOfSpeechIds" id="partOfSpeechIds" multiple> */}
             <Query query={AllPartsOfSpeech}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <Alert color="danger">{error.message}</Alert>;
-                return data.allPartsOfSpeech.map(part => (
-                  <option value={part.id}>{part.name}</option>
-                ));
+                return (
+                  // console.log();
+                  <ReactSelect
+                    isMulti
+                    value={selectedPartsOfSpeech}
+                    onChange={this.handleChangepartOfSpeechIds}
+                    options={data.allPartsOfSpeech.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
               }}
             </Query>
-          </Input>
+          {/* </Input> */}
           <Label for="etymologyIds">Etymology</Label>
           <Input onChange={this.handleChangeEtymologyIds} type="select" name="etymologyIds" id="etymologyIds" multiple>
             <Query query={AllEtymologies}>
@@ -252,12 +261,12 @@ export default class WordForm extends React.Component {
           >
             {(createWordMutation, { loading, error, data }) => {
               if (loading) {
-                return <Button>Loading...</Button>;
+                return <Button color="secondary">Loading...</Button>;
               }
               if (error) {
                 return (
                   <div>
-                    <Button onClick={createWordMutation}>Submit</Button>
+                    <Button color="primary" onClick={createWordMutation}>Submit</Button>
                     <Alert color="danger">
                       Error: {error.message}
                     </Alert>
@@ -273,7 +282,7 @@ export default class WordForm extends React.Component {
                 );
               }
               return (
-                <Button onClick={createWordMutation}>Submit</Button>
+                <Button color="primary" onClick={createWordMutation}>Submit</Button>
               );
             }
             }
