@@ -13,6 +13,20 @@ const quoteBySlug = gql`
       id
       name
       body
+      author {
+        id
+        name
+      }
+      topics {
+        id
+        name
+      }
+      tones {
+        id
+        name
+      }
+      note
+      source
     }
   }
 `;
@@ -30,7 +44,18 @@ const QuotePage = ({ slug }) => (
               <title>{quote.name}</title>
             </Head>
             <h1>{quote.name}</h1>
+            <h2>Quote</h2>
             <p>{quote.body}</p>
+            <h2>Author</h2>
+            {quote.author.name}
+            {quote.topics.length > 0 && <h2>Topics</h2>}
+            {quote.topics && quote.topics.map(item => <><p>{item.name}</p></>)}
+            {quote.tones.length > 0 && <h2>Tone</h2>}
+            {quote.tones && quote.tones.map(item => <><p>{item.name}</p></>)}
+            {quote.note && <h2>Note</h2>}
+            {quote.note && quote.note}
+            {quote.source && <h2>Source</h2>}
+            {quote.source && quote.source}
           </>
         );
       }}

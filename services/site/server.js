@@ -28,7 +28,7 @@ const boot = async () => {
   });
 
   webserver.get('/phrase/create', (req, res) => {
-    app.render(req, res, '/phrase-create');
+    app.render(req, res, '/phraseCreate');
   });
 
   webserver.get('/phrase/:slug', (req, res) => {
@@ -37,7 +37,7 @@ const boot = async () => {
   });
 
   webserver.get('/quote/create', (req, res) => {
-    app.render(req, res, '/quote-create');
+    app.render(req, res, '/quoteCreate');
   });
 
   webserver.get('/quote/:slug', (req, res) => {
