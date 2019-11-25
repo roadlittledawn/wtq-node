@@ -42,7 +42,6 @@ const WordPage = ({ slug }) => (
         if (loading) return <p>Loading...</p>;
         if (error) return <Alert color="danger">{error.message}</Alert>;
         const { wordBySlug: word } = data;
-        console.log(word);
         return (
           <>
             <Head>
