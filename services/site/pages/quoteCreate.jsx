@@ -163,85 +163,99 @@ export default class QuoteForm extends React.Component {
         </Head>
         <h1>Add a Quote</h1>
         <Form onSubmit={e => e.preventDefault()}>
-          <Label for="name">Name this quote</Label>
-          <Input
-            type="text"
-            name="name"
-            value={CreateQuoteInput.name}
-            onChange={this.handleChangeName}
-            placeholder="Name the quote. Example: Stephen Colbert on yogurt and opera"
-          />
-          <Label for="body">Quote</Label>
-          <Input
-            type="textarea"
-            rows="7"
-            name="body"
-            value={CreateQuoteInput.body}
-            onChange={this.handleChangeBody}
-            placeholder="Enter the content of the quote"
-          />
-          <Label for="authorId">Author</Label>
-          <Query query={AllAuthors}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  value={selectedAuthor}
-                  onChange={this.handleChangeAuthorId}
-                  options={data.allAuthors.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="topicIds">Topics</Label>
-          <Query query={AllTopics}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedTopics}
-                  onChange={this.handleChangeTopicIds}
-                  options={data.allTopics.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="toneIds">Tone</Label>
-          <Query query={AllTones}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedTones}
-                  onChange={this.handleChangeToneIds}
-                  options={data.allTones.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="note">Notes</Label>
-          <Input
-            type="textarea"
-            name="note"
-            rows="5"
-            value={CreateQuoteInput.note}
-            onChange={this.handleChangeNote}
-            placeholder="Note to self"
-          />
-          <Label for="source">Source</Label>
-          <Input
-            type="textarea"
-            name="note"
-            rows="5"
-            value={CreateQuoteInput.source}
-            onChange={this.handleChangeSource}
-            placeholder="If available, cite specific reference / source"
-          />
+          <FormGroup>
+            <Label for="name">Name this quote</Label>
+            <Input
+              type="text"
+              name="name"
+              value={CreateQuoteInput.name}
+              onChange={this.handleChangeName}
+              placeholder="Name the quote. Example: Stephen Colbert on yogurt and opera"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="body">Quote</Label>
+            <Input
+              type="textarea"
+              rows="7"
+              name="body"
+              value={CreateQuoteInput.body}
+              onChange={this.handleChangeBody}
+              placeholder="Enter the content of the quote"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="authorId">Author</Label>
+            <Query query={AllAuthors}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    value={selectedAuthor}
+                    onChange={this.handleChangeAuthorId}
+                    options={data.allAuthors.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="topicIds">Topics</Label>
+            <Query query={AllTopics}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedTopics}
+                    onChange={this.handleChangeTopicIds}
+                    options={data.allTopics.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="toneIds">Tone</Label>
+            <Query query={AllTones}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedTones}
+                    onChange={this.handleChangeToneIds}
+                    options={data.allTones.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="note">Notes</Label>
+            <Input
+              type="textarea"
+              name="note"
+              rows="5"
+              value={CreateQuoteInput.note}
+              onChange={this.handleChangeNote}
+              placeholder="Note to self"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="source">Source</Label>
+            <Input
+              type="textarea"
+              name="note"
+              rows="5"
+              value={CreateQuoteInput.source}
+              onChange={this.handleChangeSource}
+              placeholder="If available, cite specific reference / source"
+            />
+          </FormGroup>
           <Mutation
             mutation={CreateQuote}
             variables={{ input: CreateQuoteInput }}

@@ -180,92 +180,106 @@ export default class WordForm extends React.Component {
         </Head>
         <h1>Add a Word</h1>
         <Form onSubmit={e => e.preventDefault()}>
-          <Label for="name">Word</Label>
-          <Input
-            type="text"
-            name="name"
-            value={CreateWordInput.name}
-            onChange={this.handleChangeName}
-            placeholder="Enter word"
-          />
-          <Label for="definition">Definition</Label>
-          <Input
-            type="textarea"
-            name="definition"
-            rows="5"
-            value={CreateWordInput.definition}
-            onChange={this.handleChangeDefinition}
-            placeholder="Enter custom definition"
-          />
-          <Label for="partOfSpeechIds">Part of Speech</Label>
-          <Query query={AllPartsOfSpeech}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedPartsOfSpeech}
-                  onChange={this.handleChangepartOfSpeechIds}
-                  options={data.allPartsOfSpeech.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="etymologyIds">Etymology</Label>
-          <Query query={AllEtymologies}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedEtymologies}
-                  onChange={this.handleChangeEtymologyIds}
-                  options={data.allEtymologies.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="contextIds">Context</Label>
-          <Query query={AllContexts}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedContexts}
-                  onChange={this.handleChangeContextIds}
-                  options={data.allContexts.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="toneIds">Tone</Label>
-          <Query query={AllTones}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedTones}
-                  onChange={this.handleChangeToneIds}
-                  options={data.allTones.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="note">Notes</Label>
-          <Input
-            type="textarea"
-            name="note"
-            rows="5"
-            value={CreateWordInput.note}
-            onChange={this.handleChangeNote}
-            placeholder="Note to self"
-          />
+          <FormGroup>
+            <Label for="name">Word</Label>
+            <Input
+              type="text"
+              name="name"
+              value={CreateWordInput.name}
+              onChange={this.handleChangeName}
+              placeholder="Enter word"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="definition">Definition</Label>
+            <Input
+              type="textarea"
+              name="definition"
+              rows="5"
+              value={CreateWordInput.definition}
+              onChange={this.handleChangeDefinition}
+              placeholder="Enter custom definition"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="partOfSpeechIds">Part of Speech</Label>
+            <Query query={AllPartsOfSpeech}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedPartsOfSpeech}
+                    onChange={this.handleChangepartOfSpeechIds}
+                    options={data.allPartsOfSpeech.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="etymologyIds">Etymology</Label>
+            <Query query={AllEtymologies}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedEtymologies}
+                    onChange={this.handleChangeEtymologyIds}
+                    options={data.allEtymologies.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="contextIds">Context</Label>
+            <Query query={AllContexts}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedContexts}
+                    onChange={this.handleChangeContextIds}
+                    options={data.allContexts.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="toneIds">Tone</Label>
+            <Query query={AllTones}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedTones}
+                    onChange={this.handleChangeToneIds}
+                    options={data.allTones.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="note">Notes</Label>
+            <Input
+              type="textarea"
+              name="note"
+              rows="5"
+              value={CreateWordInput.note}
+              onChange={this.handleChangeNote}
+              placeholder="Note to self"
+            />
+          </FormGroup>
           <Mutation
             mutation={CreateWord}
             variables={{ input: CreateWordInput }}

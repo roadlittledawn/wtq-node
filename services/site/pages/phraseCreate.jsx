@@ -164,86 +164,100 @@ export default class PhraseForm extends React.Component {
         </Head>
         <h1>Add a Phrase</h1>
         <Form onSubmit={e => e.preventDefault()}>
-          <Label for="name">Phrase</Label>
-          <Input
-            type="text"
-            name="name"
-            value={CreatePhraseInput.name}
-            onChange={this.handleChangeName}
-            placeholder="Enter phrase"
-          />
-          <Label for="definition">Definition</Label>
-          <Input
-            type="textarea"
-            name="definition"
-            rows="5"
-            value={CreatePhraseInput.definition}
-            onChange={this.handleChangeDefinition}
-            placeholder="What does phrase mean?"
-          />
-          <Label for="topicIds">Topics</Label>
-          <Query query={AllTopics}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedTopics}
-                  onChange={this.handleChangeTopicIds}
-                  options={data.allTopics.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="contextIds">Context</Label>
-          <Query query={AllContexts}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedContexts}
-                  onChange={this.handleChangeContextIds}
-                  options={data.allContexts.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="toneIds">Tone</Label>
-          <Query query={AllTones}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <Alert color="danger">{error.message}</Alert>;
-              return (
-                <ReactSelect
-                  isMulti
-                  value={selectedTones}
-                  onChange={this.handleChangeToneIds}
-                  options={data.allTones.map(item => ({ value: item.id, label: item.name }))}
-                />
-              );
-            }}
-          </Query>
-          <Label for="note">Notes</Label>
-          <Input
-            type="textarea"
-            name="note"
-            rows="5"
-            value={CreatePhraseInput.note}
-            onChange={this.handleChangeNote}
-            placeholder="Note to self"
-          />
-          <Label for="source">Source</Label>
-          <Input
-            type="textarea"
-            name="note"
-            rows="5"
-            value={CreatePhraseInput.source}
-            onChange={this.handleChangeSource}
-            placeholder="If available, cite specific reference / source"
-          />
+          <FormGroup>
+            <Label for="name">Phrase</Label>
+            <Input
+              type="text"
+              name="name"
+              value={CreatePhraseInput.name}
+              onChange={this.handleChangeName}
+              placeholder="Enter phrase"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="definition">Definition</Label>
+            <Input
+              type="textarea"
+              name="definition"
+              rows="5"
+              value={CreatePhraseInput.definition}
+              onChange={this.handleChangeDefinition}
+              placeholder="What does phrase mean?"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="topicIds">Topics</Label>
+            <Query query={AllTopics}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedTopics}
+                    onChange={this.handleChangeTopicIds}
+                    options={data.allTopics.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="contextIds">Context</Label>
+            <Query query={AllContexts}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedContexts}
+                    onChange={this.handleChangeContextIds}
+                    options={data.allContexts.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="toneIds">Tone</Label>
+            <Query query={AllTones}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <Alert color="danger">{error.message}</Alert>;
+                return (
+                  <ReactSelect
+                    isMulti
+                    value={selectedTones}
+                    onChange={this.handleChangeToneIds}
+                    options={data.allTones.map(item => ({ value: item.id, label: item.name }))}
+                  />
+                );
+              }}
+            </Query>
+          </FormGroup>
+          <FormGroup>
+            <Label for="note">Notes</Label>
+            <Input
+              type="textarea"
+              name="note"
+              rows="5"
+              value={CreatePhraseInput.note}
+              onChange={this.handleChangeNote}
+              placeholder="Note to self"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="source">Source</Label>
+            <Input
+              type="textarea"
+              name="note"
+              rows="5"
+              value={CreatePhraseInput.source}
+              onChange={this.handleChangeSource}
+              placeholder="If available, cite specific reference / source"
+            />
+          </FormGroup>
           <Mutation
             mutation={CreatePhrase}
             variables={{ input: CreatePhraseInput }}
