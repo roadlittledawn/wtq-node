@@ -36,35 +36,57 @@ export default class Example extends React.Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <Link href="/words" passHref>
-                <NavLink>Words</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/quotes" passHref>
-                <NavLink>Quotes</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/phrases" passHref>
-                <NavLink>Phrases</NavLink>
-              </Link>
-            </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Options
+                Words
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Option 1
-                </DropdownItem>
-                <DropdownItem>
-                  Option 2
+                  <Link href="/words" passHref>
+                    <NavLink>Words</NavLink>
+                  </Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  Reset
+                  <Link href="/word/create" passHref>
+                    <NavLink>Add a word</NavLink>
+                  </Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Phrases
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <Link href="/phrases" passHref>
+                    <NavLink>Phrases</NavLink>
+                  </Link>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  <Link href="/phrase/create" passHref>
+                    <NavLink>Add a phrase</NavLink>
+                  </Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Quotes
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <Link href="/quotes" passHref>
+                    <NavLink>Quotes</NavLink>
+                  </Link>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  <Link href="/quote/create" passHref>
+                    <NavLink>Add a quote</NavLink>
+                  </Link>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
