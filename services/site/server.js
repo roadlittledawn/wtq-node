@@ -22,6 +22,11 @@ const boot = async () => {
     app.render(req, res, '/wordCreate');
   });
 
+  webserver.get('/word/:slug/edit', (req, res) => {
+    const { slug } = req.params;
+    app.render(req, res, '/wordEdit', { slug });
+  });
+
   webserver.get('/word/:slug', (req, res) => {
     const { slug } = req.params;
     app.render(req, res, '/word', { slug });
