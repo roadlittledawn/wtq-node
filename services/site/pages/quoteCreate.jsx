@@ -170,7 +170,7 @@ export default class QuoteForm extends React.Component {
               name="name"
               value={CreateQuoteInput.name}
               onChange={this.handleChangeName}
-              placeholder="Name the quote. Example: Stephen Colbert on yogurt and opera"
+              placeholder="Example: Stephen Colbert on yogurt and opera"
             />
           </FormGroup>
           <FormGroup>

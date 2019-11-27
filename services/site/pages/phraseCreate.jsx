@@ -52,7 +52,6 @@ export default class PhraseForm extends React.Component {
     this.state = {
       loading: false,
       error: null,
-      selectedPartsOfSpeech: null,
       selectedContexts: null,
       selectedTones: null,
       selectedTopics: null,
