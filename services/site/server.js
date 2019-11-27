@@ -36,6 +36,11 @@ const boot = async () => {
     app.render(req, res, '/phraseCreate');
   });
 
+  webserver.get('/phrase/:slug/edit', (req, res) => {
+    const { slug } = req.params;
+    app.render(req, res, '/phraseEdit', { slug });
+  });
+
   webserver.get('/phrase/:slug', (req, res) => {
     const { slug } = req.params;
     app.render(req, res, '/phrase', { slug });
@@ -43,6 +48,11 @@ const boot = async () => {
 
   webserver.get('/quote/create', (req, res) => {
     app.render(req, res, '/quoteCreate');
+  });
+
+  webserver.get('/quote/:slug/edit', (req, res) => {
+    const { slug } = req.params;
+    app.render(req, res, '/quoteEdit', { slug });
   });
 
   webserver.get('/quote/:slug', (req, res) => {
