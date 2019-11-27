@@ -71,7 +71,6 @@ The site has the following 3 types of core content called entries, each with the
 
 # TODO
 * Add create/edit pages for all metadata fields
-* Add edit entry pages
 * Add word dictionary API calls / caching
 * Add ability to add new terms to metadata fields on create/edit pages
 * Add authentication for admin only data operations
@@ -80,6 +79,7 @@ The site has the following 3 types of core content called entries, each with the
 * Improve words landing page: alphabetical browsing, alpha sort, pagination
 * Improve phrases landing page: alpha sort, pagination
 * Improve quotes landing: paginated, author cards w/image
+* Figure out how to deploy
 
 ## Refactor
 * Combine create pages into one create page w/request parameter to know which entry model / data we need.
