@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Query, Mutation, graphql } from 'react-apollo';
-import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import {
  Button, Form, FormGroup, Label, Input, FormText, Alert 
