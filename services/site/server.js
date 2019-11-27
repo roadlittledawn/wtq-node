@@ -60,6 +60,11 @@ const boot = async () => {
     app.render(req, res, '/quote', { slug });
   });
 
+  webserver.get('/taxonomy/:taxName/create', (req, res) => {
+    const { taxName } = req.params;
+    app.render(req, res, '/taxCreate', { taxName });
+  });
+
   // Have next handle all others.
   webserver.get('*', (req, res) => handle(req, res));
 
