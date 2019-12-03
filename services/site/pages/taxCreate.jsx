@@ -229,7 +229,7 @@ class TaxCreateForm extends React.Component {
             }
           </Mutation>
           </Col>
-          <Col xs="6">
+          <Col md="6">
           <div>
             <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
               View all terms
