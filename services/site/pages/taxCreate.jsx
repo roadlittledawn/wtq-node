@@ -154,18 +154,12 @@ class TaxCreateForm extends React.Component {
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
-    // Can probably put code to update state here at load
   }
 
   static async getInitialProps({ query }) {
     const { taxName } = query;
     return { taxName };
   }
-
-  // I think can eventually move this to constructor()
-  // componentDidMount() {
-
-  // }
 
   handleChangeName(event) {
     const { CreateTaxInput } = { ...this.state };
@@ -180,8 +174,6 @@ class TaxCreateForm extends React.Component {
       selectedTax,
       CreateTaxInput,
     } = this.state;
-    const { taxName } = this.props;
-    // console.log(selectedTax)
     return (
       <DefaultLayout>
         <Head>
@@ -194,7 +186,7 @@ class TaxCreateForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs="6">
+            <Col md="6">
           <FormGroup>
             <Label for="name">Term name</Label>
             <Input
