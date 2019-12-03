@@ -200,6 +200,7 @@ class TaxCreateForm extends React.Component {
           <Mutation
             mutation={selectedTax.mutationName}
             variables={{ input: CreateTaxInput }}
+            refetchQueries={ [{ query: selectedTax.queryName }] }
           >
             {(createTaxMutation, { loading, error, data }) => {
               if (loading) {
