@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import {
-  Button, Form, FormGroup, Label, Input, Alert, UncontrolledCollapse, Spinner, Container, Row, Col
+  Button, Form, FormGroup, Label, Input, Alert, UncontrolledCollapse, Spinner, Container, Row, Col, Table
 } from 'reactstrap';
 // import ReactSelect from 'react-select';
 import DefaultLayout from '../layouts/Default';
@@ -232,36 +232,39 @@ class TaxCreateForm extends React.Component {
           </Col>
           <Col md="6">
           <div>
-            <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
-              View all terms
-            </Button>
-            <UncontrolledCollapse toggler="#toggler">
-              <Query query={selectedTax.queryName}>
-                {
-                  ({ loading, error, data }) => {
-                    if (loading) {
-                      return <Spinner color="primary" />;
-                    }
-                    if (error) {
-                      return (
-                        <div>
-                          <Alert color="danger">
-                            Error: {error.message}
-                          </Alert>
-                        </div>
-                      );
-                    }
-                    let returnObjName = selectedTax.queryReturnObj;
-                    let returnObjArr = data[returnObjName];
-                    return (
-                      <ul>
-                        {returnObjArr.map(item => <li>{item.name}</li>)}
-                      </ul>
-                      );
+            <Query query={selectedTax.queryName}>
+              {
+                ({ loading, error, data }) => {
+                  if (loading) {
+                    return <Spinner color="primary" />;
                   }
+                  if (error) {
+                    return (
+                      <div>
+                        <Alert color="danger">
+                          Error: {error.message}
+                        </Alert>
+                      </div>
+                    );
+                  }
+                  let returnObjName = selectedTax.queryReturnObj;
+                  let returnObjArr = data[returnObjName];
+                  return (
+                    <Table>
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Term name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {returnObjArr.map((item, index) => <tr><td>{index+1}</td><td>{item.name}</td></tr>)}
+                      </tbody>
+                    </Table>
+                  );
                 }
-              </Query>
-            </UncontrolledCollapse>
+              }
+            </Query>
           </div>
           </Col>
           </Row>
