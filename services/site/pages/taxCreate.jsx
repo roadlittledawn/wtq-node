@@ -258,7 +258,19 @@ class TaxCreateForm extends React.Component {
                         </tr>
                       </thead>
                       <tbody>
-                      {returnObjArr.map((item, index) => <tr><td>{index+1}</td><td>{item.name}</td></tr>)}
+                        {
+                        returnObjArr.sort((a, b) => {
+                          if (a.name > b.name) {
+                            return 1;
+                          }
+                          if (a.name < b.name) {
+                            return -1;
+                          }
+                          return 0;
+                        }).map(
+                          (item, index) => <tr><td>{index+1}</td><td>{item.name}</td></tr>
+                        )
+                        }
                       </tbody>
                     </Table>
                   );
