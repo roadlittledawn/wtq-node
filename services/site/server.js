@@ -65,6 +65,31 @@ const boot = async () => {
     app.render(req, res, '/taxCreate', { taxName });
   });
 
+  webserver.get('/taxonomy/contexts/id/:id/edit', (req, res) => {
+    const { id } = req.params;
+    app.render(req, res, '/taxEditContexts', { id });
+  });
+
+  webserver.get('/taxonomy/etymologies/id/:id/edit', (req, res) => {
+    const { id } = req.params;
+    app.render(req, res, '/taxEditEtymologies', { id });
+  });
+
+  webserver.get('/taxonomy/partsOfSpeech/id/:id/edit', (req, res) => {
+    const { id } = req.params;
+    app.render(req, res, '/taxEditPartsOfSpeech', { id });
+  });
+
+  webserver.get('/taxonomy/tones/id/:id/edit', (req, res) => {
+    const { id } = req.params;
+    app.render(req, res, '/taxEditTones', { id });
+  });
+
+  webserver.get('/taxonomy/topics/id/:id/edit', (req, res) => {
+    const { id } = req.params;
+    app.render(req, res, '/taxEditTopics', { id });
+  });
+
   // Have next handle all others.
   webserver.get('*', (req, res) => handle(req, res));
 
