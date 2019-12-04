@@ -4,10 +4,11 @@ import Head from 'next/head';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import {
- Button, Form, FormGroup, Label, Input, FormText, Alert 
+ Button, Form, FormGroup, Label, Input, FormText, Alert, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactSelect from 'react-select';
 import DefaultLayout from '../layouts/Default';
+import TaxCreateForm from './taxCreate';
 
 const CreatePhrase = gql`
   mutation CreatePhrase($input: CreatePhraseInput!) {
@@ -64,8 +65,14 @@ export default class PhraseForm extends React.Component {
         note: '',
         source: '',
       },
+      modalContext: false,
+      modalTone: false,
+      modalTopic: false,
     };
 
+    this.toggleModalContext = this.toggleModalContext.bind(this);
+    this.toggleModalTone = this.toggleModalTone.bind(this);
+    this.toggleModalTopic = this.toggleModalTopic.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDefinition = this.handleChangeDefinition.bind(this);
     this.handleChangeTopicIds = this.handleChangeTopicIds.bind(this);
@@ -73,6 +80,24 @@ export default class PhraseForm extends React.Component {
     this.handleChangeToneIds = this.handleChangeToneIds.bind(this);
     this.handleChangeNote = this.handleChangeNote.bind(this);
     this.handleChangeSource = this.handleChangeSource.bind(this);
+  }
+
+  toggleModalContext() {
+    this.setState(prevState => ({
+      modalContext: !prevState.modalContext,
+    }));
+  }
+
+  toggleModalTone() {
+    this.setState(prevState => ({
+      modalTone: !prevState.modalTone,
+    }));
+  }
+
+  toggleModalTopic() {
+    this.setState(prevState => ({
+      modalTopic: !prevState.modalTopic,
+    }));
   }
 
   handleChangeName(event) {
@@ -155,6 +180,9 @@ export default class PhraseForm extends React.Component {
       selectedTones,
       selectedTopics,
       CreatePhraseInput,
+      modalContext,
+      modalTone,
+      modalTopic,
     } = this.state;
     return (
       <DefaultLayout>
@@ -186,6 +214,18 @@ export default class PhraseForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="topicIds">Topics</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalTopic}>Add term</Button>
+              <Modal isOpen={modalTopic} toggle={this.toggleModalTopic}>
+                <ModalHeader toggle={this.toggleModalTopic} charCode="X">Add term to Topic taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="topics" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalTopic}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllTopics}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
@@ -203,6 +243,18 @@ export default class PhraseForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="contextIds">Context</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalContext}>Add term</Button>
+              <Modal isOpen={modalContext} toggle={this.toggleModalContext}>
+                <ModalHeader toggle={this.toggleModalContext} charCode="X">Add term to Context taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="contexts" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalContext}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllContexts}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
@@ -220,6 +272,18 @@ export default class PhraseForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="toneIds">Tone</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalTone}>Add term</Button>
+              <Modal isOpen={modalTone} toggle={this.toggleModalTone}>
+                <ModalHeader toggle={this.toggleModalTone} charCode="X">Add term to Tone taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="tones" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalTone}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllTones}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;

@@ -4,10 +4,11 @@ import Head from 'next/head';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import {
- Button, Form, FormGroup, Label, Input, FormText, Alert 
+ Button, Form, FormGroup, Label, Input, FormText, Alert, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactSelect from 'react-select';
 import DefaultLayout from '../layouts/Default';
+import TaxCreateForm from './taxCreate';
 
 const CreateWord = gql`
   mutation CreateWord($input: CreateWordInput!) {
@@ -74,8 +75,16 @@ export default class WordForm extends React.Component {
         toneIds: [],
         note: '',
       },
+      modalPartOfSpeech: false,
+      modalEtymology: false,
+      modalContext: false,
+      modalTone: false,
     };
 
+    this.toggleModalPartOfSpeech = this.toggleModalPartOfSpeech.bind(this);
+    this.toggleModalEtymology = this.toggleModalEtymology.bind(this);
+    this.toggleModalContext = this.toggleModalContext.bind(this);
+    this.toggleModalTone = this.toggleModalTone.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDefinition = this.handleChangeDefinition.bind(this);
     this.handleChangepartOfSpeechIds = this.handleChangepartOfSpeechIds.bind(this);
@@ -83,6 +92,30 @@ export default class WordForm extends React.Component {
     this.handleChangeContextIds = this.handleChangeContextIds.bind(this);
     this.handleChangeToneIds = this.handleChangeToneIds.bind(this);
     this.handleChangeNote = this.handleChangeNote.bind(this);
+  }
+
+  toggleModalPartOfSpeech() {
+    this.setState(prevState => ({
+      modalPartOfSpeech: !prevState.modalPartOfSpeech,
+    }));
+  }
+
+  toggleModalEtymology() {
+    this.setState(prevState => ({
+      modalEtymology: !prevState.modalEtymology,
+    }));
+  }
+
+  toggleModalContext() {
+    this.setState(prevState => ({
+      modalContext: !prevState.modalContext,
+    }));
+  }
+
+  toggleModalTone() {
+    this.setState(prevState => ({
+      modalTone: !prevState.modalTone,
+    }));
   }
 
   handleChangeName(event) {
@@ -172,6 +205,10 @@ export default class WordForm extends React.Component {
       selectedTones,
       selectedEtymologies,
       CreateWordInput,
+      modalPartOfSpeech,
+      modalEtymology,
+      modalContext,
+      modalTone,
     } = this.state;
     return (
       <DefaultLayout>
@@ -203,6 +240,18 @@ export default class WordForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="partOfSpeechIds">Part of Speech</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalPartOfSpeech}>Add term</Button>
+              <Modal isOpen={modalPartOfSpeech} toggle={this.toggleModalPartOfSpeech}>
+                <ModalHeader toggle={this.toggleModalPartOfSpeech} charCode="X">Add term to Part of Speech taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="partsOfSpeech" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalPartOfSpeech}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllPartsOfSpeech}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
@@ -220,6 +269,18 @@ export default class WordForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="etymologyIds">Etymology</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalEtymology}>Add term</Button>
+              <Modal isOpen={modalEtymology} toggle={this.toggleModalEtymology}>
+                <ModalHeader toggle={this.toggleModalEtymology} charCode="X">Add term to Etymology taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="etymologies" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalEtymology}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllEtymologies}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
@@ -237,6 +298,18 @@ export default class WordForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="contextIds">Context</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalContext}>Add term</Button>
+              <Modal isOpen={modalContext} toggle={this.toggleModalContext}>
+                <ModalHeader toggle={this.toggleModalContext} charCode="X">Add term to Context taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="contexts" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalContext}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllContexts}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
@@ -254,6 +327,18 @@ export default class WordForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="toneIds">Tone</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalTone}>Add term</Button>
+              <Modal isOpen={modalTone} toggle={this.toggleModalTone}>
+                <ModalHeader toggle={this.toggleModalTone} charCode="X">Add term to Tone taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="tones" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalTone}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllTones}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
