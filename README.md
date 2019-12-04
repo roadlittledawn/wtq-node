@@ -70,7 +70,6 @@ The site has the following 3 types of core content called entries, each with the
   * source
 
 # TODO
-* Add create/edit pages for all metadata fields
 * Add authentication for admin only data 
 * Add ability to add new terms to metadata fields on create/edit pages
 * Add search (elastic?)
@@ -78,7 +77,7 @@ The site has the following 3 types of core content called entries, each with the
 * Improve words landing page: alphabetical browsing, alpha sort, pagination
 * Improve phrases landing page: alpha sort, pagination
 * Improve quotes landing: paginated, author cards w/image
-* Add description field to all metadata/taxonomy types
+* Add description and slug field to all metadata/taxonomy types
 * Add graphql type and page for quotes by author (not sure byCategory will quite work because not array)
 * Add [fontawesome library](https://github.com/FortAwesome/react-fontawesome)
 
@@ -89,3 +88,4 @@ The site has the following 3 types of core content called entries, each with the
 ## Refactor
 * Combine create pages into one create page w/request parameter to know which entry model / data we need.
 * Auto set `name` field for quote based on author, and meta field terms
+* Combine taxEdit pages into one file like taxCreate that uses parameters to get data and use correct queries/mutations
