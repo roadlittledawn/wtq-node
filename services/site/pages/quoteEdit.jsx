@@ -4,10 +4,11 @@ import Head from 'next/head';
 import { Query, Mutation, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import {
- Button, Form, FormGroup, Label, Input, FormText, Alert 
+ Button, Form, FormGroup, Label, Input, FormText, Alert, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactSelect from 'react-select';
 import DefaultLayout from '../layouts/Default';
+import TaxCreateForm from './taxCreate';
 
 const QuoteBySlug = gql`
   query QuoteBySlug($input: QuoteBySlugInput!) {
@@ -88,8 +89,12 @@ class QuoteEditForm extends React.Component {
         note: '',
         source: '',
       },
+      modalTone: false,
+      modalTopic: false,
     };
 
+    this.toggleModalTone = this.toggleModalTone.bind(this);
+    this.toggleModalTopic = this.toggleModalTopic.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeBody = this.handleChangeBody.bind(this);
     this.handleChangeAuthorId = this.handleChangeAuthorId.bind(this);
@@ -119,6 +124,18 @@ class QuoteEditForm extends React.Component {
         source: quoteBySlug.source,
       }
     });
+  }
+
+  toggleModalTone() {
+    this.setState(prevState => ({
+      modalTone: !prevState.modalTone,
+    }));
+  }
+
+  toggleModalTopic() {
+    this.setState(prevState => ({
+      modalTopic: !prevState.modalTopic,
+    }));
   }
 
   handleChangeName(event) {
@@ -201,6 +218,8 @@ class QuoteEditForm extends React.Component {
       selectedTones,
       selectedTopics,
       UpdateQuoteInput,
+      modalTone,
+      modalTopic,
     } = this.state;
     return (
       <DefaultLayout>
@@ -248,6 +267,18 @@ class QuoteEditForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="topicIds">Topics</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalTopic}>Add term</Button>
+              <Modal isOpen={modalTopic} toggle={this.toggleModalTopic}>
+                <ModalHeader toggle={this.toggleModalTopic} charCode="X">Add term to Topic taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="topics" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalTopic}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllTopics}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
@@ -265,6 +296,18 @@ class QuoteEditForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="toneIds">Tone</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalTone}>Add term</Button>
+              <Modal isOpen={modalTone} toggle={this.toggleModalTone}>
+                <ModalHeader toggle={this.toggleModalTone} charCode="X">Add term to Tone taxonomy</ModalHeader>
+                <ModalBody>
+                  <TaxCreateForm taxName="tones" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalTone}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllTones}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
