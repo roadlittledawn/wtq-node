@@ -70,8 +70,7 @@ The site has the following 3 types of core content called entries, each with the
   * source
 
 # TODO
-* Add authentication for admin only data 
-* Add create/edit authors, add modal to quotes page
+* Add authentication for admin only data
 * Add search (elastic?)
 * Add word dictionary API calls / caching
 * Improve words landing page: alphabetical browsing, alpha sort, pagination
