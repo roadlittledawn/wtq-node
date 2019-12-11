@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const graphql = require('./routes/graphql');
 const User = require('./models/user');
+const withAuth = require('./middleware');
 
 const app = express();
 // For testing purposes. This should go in env file
@@ -10,8 +12,9 @@ const secret = 'mysecretsshhh';
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
-app.post('/api/register', (req, res) => {
+app.post('/api/register', withAuth, (req, res) => {
   const { email, password } = req.body;
   const user = new User({ email, password });
   user.save((err) => {
