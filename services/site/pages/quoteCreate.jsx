@@ -9,6 +9,7 @@ import {
 import ReactSelect from 'react-select';
 import DefaultLayout from '../layouts/Default';
 import TaxCreateForm from './taxCreate';
+import AuthorCreateForm from './authorCreate';
 
 const CreateQuote = gql`
   mutation CreateQuote($input: CreateQuoteInput!) {
@@ -65,10 +66,12 @@ export default class QuoteForm extends React.Component {
         note: '',
         source: '',
       },
+      modalAuthor: false,
       modalTone: false,
       modalTopic: false,
     };
 
+    this.toggleModalAuthor = this.toggleModalAuthor.bind(this);
     this.toggleModalTone = this.toggleModalTone.bind(this);
     this.toggleModalTopic = this.toggleModalTopic.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -78,6 +81,12 @@ export default class QuoteForm extends React.Component {
     this.handleChangeToneIds = this.handleChangeToneIds.bind(this);
     this.handleChangeNote = this.handleChangeNote.bind(this);
     this.handleChangeSource = this.handleChangeSource.bind(this);
+  }
+
+  toggleModalAuthor() {
+    this.setState(prevState => ({
+      modalAuthor: !prevState.modalAuthor,
+    }));
   }
 
   toggleModalTone() {
@@ -172,6 +181,7 @@ export default class QuoteForm extends React.Component {
       selectedTones,
       selectedTopics,
       CreateQuoteInput,
+      modalAuthor,
       modalTone,
       modalTopic,
     } = this.state;
@@ -205,6 +215,18 @@ export default class QuoteForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="authorId">Author</Label>
+            <div>
+              <Button color="link" onClick={this.toggleModalAuthor}>Add author</Button>
+              <Modal isOpen={modalAuthor} toggle={this.toggleModalAuthor}>
+                <ModalHeader toggle={this.toggleModalAuthor} charCode="X">Add author</ModalHeader>
+                <ModalBody>
+                  <AuthorCreateForm />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={this.toggleModalAuthor}>Close</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
             <Query query={AllAuthors}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;

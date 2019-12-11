@@ -18,6 +18,16 @@ const boot = async () => {
 
   // Load custom routes.
   loadGraphQL(GRAPHQL_URL, webserver);
+
+  webserver.get('/author/create', (req, res) => {
+    app.render(req, res, '/authorCreate');
+  });
+
+  webserver.get('/author/:id/edit', (req, res) => {
+    const { id } = req.params;
+    app.render(req, res, '/authorEdit', { id });
+  });
+
   webserver.get('/word/create', (req, res) => {
     app.render(req, res, '/wordCreate');
   });
