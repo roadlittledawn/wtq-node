@@ -7,6 +7,7 @@ import {
  Button, Form, FormGroup, Label, Input, FormText, Alert, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactSelect from 'react-select';
+import withAuth from '../components/withAuth';
 import DefaultLayout from '../layouts/Default';
 import TaxCreateForm from './taxCreate';
 
@@ -389,7 +390,7 @@ const QuoteEditFormWithData = graphql(QuoteBySlug, {
       input: slug,
     },
   }),
-})(QuoteEditForm);
+})(withAuth(QuoteEditForm));
 
 QuoteEditFormWithData.getInitialProps = ({ query }) => {
   const { slug } = query;
