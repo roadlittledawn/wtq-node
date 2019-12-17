@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 import ReactSelect from 'react-select';
 import DefaultLayout from '../layouts/Default';
+import withAuth from '../components/withAuth';
 import TaxCreateForm from './taxCreate';
 import AuthorCreateForm from './authorCreate';
 
@@ -48,7 +49,7 @@ const AllTones = gql`
   }
 `;
 
-export default class QuoteForm extends React.Component {
+class QuoteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -358,3 +359,5 @@ export default class QuoteForm extends React.Component {
     );
   }
 }
+
+export default withAuth(QuoteForm);

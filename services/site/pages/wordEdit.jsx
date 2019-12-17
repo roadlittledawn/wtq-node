@@ -7,6 +7,7 @@ import {
  Button, Form, FormGroup, Label, Input, FormText, Alert, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactSelect from 'react-select';
+import withAuth from '../components/withAuth';
 import DefaultLayout from '../layouts/Default';
 import TaxCreateForm from './taxCreate';
 
@@ -450,7 +451,7 @@ const WordEditFormWithData = graphql(WordBySlug, {
       input: slug,
     },
   }),
-})(WordEditForm);
+})(withAuth(WordEditForm));
 
 WordEditFormWithData.getInitialProps = ({ query }) => {
   const { slug } = query;

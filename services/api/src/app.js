@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
+
 app.post('/api/register', withAuth, (req, res) => {
   const { email, password } = req.body;
   const user = new User({ email, password });
@@ -27,8 +29,19 @@ app.post('/api/register', withAuth, (req, res) => {
   });
 });
 
+app.options('/api/authenticate', function(req, res) {
+  res.status(200).set({
+    'Access-Control-Allow-Origin': 'http://localhost:8002',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Headers': 'content-type',
+    'Allow': 'POST',
+  }).send('OK')
+})
+
 app.post('/api/authenticate', function(req, res) {
   const { email, password } = req.body;
+  res.set('Access-Control-Allow-Origin', 'http://localhost:8002');
+  res.set('Access-Control-Allow-Credentials','true');
   User.findOne({ email }, function(err, user) {
     if (err) {
       console.error(err);
@@ -57,13 +70,29 @@ app.post('/api/authenticate', function(req, res) {
           // Issue token
           const payload = { email };
           const token = jwt.sign(payload, secret, {
-            expiresIn: '1h'
+            expiresIn: '24h'
           });
-          res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+          res.cookie('token', token, { httpOnly: false }).sendStatus(200);
         }
       });
     }
   });
+});
+
+app.options('/checkToken', function(req, res) {
+  res.status(200).set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Allow': 'GET',
+  }).send('OK')
+})
+
+app.get('/checkToken', withAuth, function(req, res) {
+  res.status(200).set({
+    'Access-Control-Allow-Origin': 'http://localhost:8002',
+    'Access-Control-Allow-Credentials': 'true',
+    'Allow': 'GET',
+  }).send('OK')
 });
 
 app.use('/graphql', graphql);

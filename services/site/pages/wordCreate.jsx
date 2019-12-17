@@ -7,6 +7,7 @@ import {
  Button, Form, FormGroup, Label, Input, FormText, Alert, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactSelect from 'react-select';
+import withAuth from '../components/withAuth';
 import DefaultLayout from '../layouts/Default';
 import TaxCreateForm from './taxCreate';
 
@@ -56,7 +57,7 @@ const AllTones = gql`
   }
 `;
 
-export default class WordForm extends React.Component {
+class WordForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -402,3 +403,5 @@ export default class WordForm extends React.Component {
     );
   }
 }
+
+export default withAuth(WordForm);
