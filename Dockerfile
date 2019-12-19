@@ -8,8 +8,8 @@ COPY /scripts /scripts
 COPY /services/api/package.json /api
 COPY /services/site/package.json /site
 RUN scripts/install.sh
-COPY /services/api ./app/api
-COPY /services/site ./app/site
+COPY /services/api /app/api
+COPY /services/site /app/site
 CMD ["yarn", "start"]
 
 FROM development as build
@@ -22,8 +22,8 @@ COPY /scripts /scripts
 COPY /services/api/package.json /api
 COPY /services/site/package.json /site
 RUN scripts/install.sh
-COPY /services/api ./app/api
-COPY /services/site ./app/site
+COPY /services/api /app/api
+COPY /services/site /app/site
 RUN npm install --production
 COPY --from=build /app/dist ./dist
 CMD ["npm", "run", "start:prod"]
