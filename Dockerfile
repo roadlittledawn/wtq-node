@@ -5,7 +5,7 @@ FROM mhart/alpine-node:8.11.4
 WORKDIR /api
 
 # copy package.json into the container at /api
-COPY package*.json /api/
+COPY services/api/package*.json /api/
 
 # install dependencies
 RUN npm install
@@ -13,8 +13,13 @@ RUN npm install
 # Copy the current directory contents into the container at /api
 COPY . /api/
 
+WORKDIR /site
+COPY services/sitepackage*.json /site
+RUN npm install
+COPY . /site/
+
 # Make port 3000 available to the world outside this container
-EXPOSE 3000
+EXPOSE 8000
 
 # Run the app when the container launches
 CMD ["npm", "start"]
