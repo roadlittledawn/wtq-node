@@ -5,7 +5,7 @@ FROM mhart/alpine-node:8.11.4
 WORKDIR /api
 
 # copy package.json into the container at /api
-COPY services/api/package*.json /api/
+COPY /services/api/package*.json /api/
 
 # install dependencies
 RUN npm install
@@ -14,7 +14,7 @@ RUN npm install
 COPY . /api/
 
 WORKDIR /site
-COPY services/sitepackage*.json /site
+COPY /services/sitepackage*.json /site
 RUN npm install
 COPY . /site/
 
