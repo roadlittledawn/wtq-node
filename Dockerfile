@@ -1,25 +1,33 @@
-# Use a lighter version of Node as a parent image
-FROM mhart/alpine-node:8.11.4
-
-# Set the working directory to /api
-WORKDIR /api
-
-# copy package.json into the container at /api
-COPY /services/api/package*.json /api/
-
-# install dependencies
-RUN npm install
-
-# Copy the current directory contents into the container at /api
-COPY . /api/
-
-WORKDIR /site
-COPY /services/sitepackage*.json /site
-RUN npm install
-COPY . /site/
-
-# Make port 3000 available to the world outside this container
+FROM node:8 as base
+WORKDIR /app
 EXPOSE 8000
 
-# Run the app when the container launches
+FROM base as development
+ENV NODE_ENV development
+COPY /services/api/package.json /api
+WORKDIR /app/api
+RUN npm install
+COPY /services/api ./app/api
+WORKDIR /app/site
+COPY /services/site/package.json /site
+RUN npm install
+COPY /services/site ./app/site
 CMD ["npm", "start"]
+
+FROM development as build
+ENV NODE_ENV=production
+RUN npm run build && npm run build:server
+
+FROM base as production
+ENV NODE_ENV=production
+COPY /services/api/package.json /api
+WORKDIR /app/api
+RUN npm install
+COPY /services/api ./app/api
+WORKDIR /app/site
+COPY /services/site/package.json /site
+RUN npm install
+COPY /services/site ./app/site
+RUN npm install --production
+COPY --from=build /app/dist ./dist
+CMD ["npm", "run", "start:prod"]
