@@ -1,8 +1,5 @@
-FROM node:8 as base
+FROM node:8 as development
 WORKDIR /app
-EXPOSE 8000
-
-FROM base as development
 ENV NODE_ENV development
 COPY scripts ./scripts
 COPY services/api/package.json ./api
@@ -10,6 +7,7 @@ COPY services/site/package.json ./site
 RUN scripts/install.sh
 COPY services/api ./app/api
 COPY services/site ./app/site
+EXPOSE 8000
 CMD ["yarn", "start"]
 
 FROM development as build
