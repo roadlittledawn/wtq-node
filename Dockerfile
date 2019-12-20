@@ -2,7 +2,7 @@ FROM node:8 as development
 WORKDIR /app
 ENV NODE_ENV development
 COPY . /app
-RUN chmod +x scripts/install.sh
+RUN chmod +x /app/scripts/install.sh
 EXPOSE 8000
 CMD ["yarn", "start"]
 
@@ -14,7 +14,7 @@ FROM base as production
 ENV NODE_ENV=production
 COPY . /app
 WORKDIR /app
-RUN chmod +x scripts/install.sh
+RUN chmod +x /app/scripts/install.sh
 RUN npm install --production
 COPY --from=build /app/dist ./dist
 CMD ["yarn", "start", "start:prod"]
