@@ -10,7 +10,7 @@ CMD ["yarn", "start"]
 
 FROM development as build
 ENV NODE_ENV=production
-RUN yarn run build && yarn run build:server
+RUN yarn workspace wtq-node-site run build && yarn workspace wtq-node-site run build
 
 FROM build as production
 ENV NODE_ENV=production
