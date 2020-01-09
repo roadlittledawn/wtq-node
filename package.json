@@ -20,5 +20,7 @@
     "gulp-eslint": "^5.0.0",
     "lerna": "^3.4.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "webpack-cli": "^3.3.10"
+  }
 }

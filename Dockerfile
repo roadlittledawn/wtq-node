@@ -17,7 +17,7 @@ ENV NODE_ENV=production
 ADD . /app
 WORKDIR /app
 RUN yarn install
-# RUN chmod +x scripts/install.sh
+# RUN chmod +x scripts/install.sh 
 
 RUN yarn install --production
 COPY --from=build /app/dist ./dist
