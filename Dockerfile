@@ -10,7 +10,7 @@ CMD ["yarn", "start"]
 
 FROM development as build
 ENV NODE_ENV=production
-RUN yarn workspace wtq-node-site run build && yarn workspace wtq-node-site run build
+RUN yarn workspace wtq-node-site run build && yarn workspace wtq-node-site run build:server
 
 FROM build as production
 ENV NODE_ENV=production
@@ -20,7 +20,7 @@ RUN yarn install
 # RUN chmod +x scripts/install.sh 
 
 RUN yarn install --production
-COPY --from=build /app/dist ./dist
+COPY --from=build /app ./dist
 CMD ["yarn", "start", "start:prod"]
 
 # FROM node:8 as base
