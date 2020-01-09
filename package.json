@@ -5,6 +5,9 @@
   "workspaces": [
     "services/*"
   ],
+  "scripts": {
+    "build": "webpack"
+  },
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",

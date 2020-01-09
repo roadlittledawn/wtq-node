@@ -10,7 +10,7 @@ CMD ["yarn", "start"]
 
 FROM development as build
 ENV NODE_ENV=production
-RUN npm run build && npm run build:server
+RUN yarn run build && yarn run build:server
 
 FROM build as production
 ENV NODE_ENV=production
