@@ -1,6 +1,7 @@
 {
   "family": "sample-fargate", 
-  "networkMode": "awsvpc", 
+  "networkMode": "awsvpc",
+  "taskDefinitionArn": "arn:aws:iam::287445272123:user/titan",
   "containerDefinitions": [
       {
           "name": "wtq", 
