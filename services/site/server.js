@@ -1,4 +1,4 @@
-const next = require('next');
+const next = require('next'); 
 const express = require('express');
 const loadGraphQL = require('./server/graphql');
 
