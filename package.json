@@ -6,7 +6,7 @@
     "services/*"
   ],
   "scripts": {
-    "build": "next build"
+    "build": "yarn workspace wtq-node-site run build"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
