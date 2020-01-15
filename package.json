@@ -6,7 +6,7 @@
     "services/*"
   ],
   "scripts": {
-    "build": "webpack"
+    "build": "next build"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
