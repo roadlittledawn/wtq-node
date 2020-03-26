@@ -80,7 +80,7 @@ The site has the following 3 types of core content called entries, each with the
 * Add graphql type and page for quotes by author (not sure byCategory will quite work because not array)
 * Add [fontawesome library](https://github.com/FortAwesome/react-fontawesome)
 
-## Depoloy / hosting
+## Deploy / hosting
 * Figure out how to deploy to AWS EC2
 * Migrate data from MySQL to Mongo
 
