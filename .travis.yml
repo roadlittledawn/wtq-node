@@ -1,3 +1,16 @@
 language: node_js
 node_js:
   - "10.13.0"
+
+cache: yarn
+
+matrix:
+  include:
+    - name: "services-api"
+      env: PACKAGE_LOCATION=services/api
+    - name: "services-site"
+      env: PACKAGE_LOCATION=services/site
+
+script:
+  - cd $PACKAGE_LOCATION
+  - yarn build
