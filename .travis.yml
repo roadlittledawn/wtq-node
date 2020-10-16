@@ -13,4 +13,4 @@ matrix:
 
 script:
   - cd $PACKAGE_LOCATION
-  - yarn build
+  - yarn start
