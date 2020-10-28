@@ -4,13 +4,14 @@ node_js:
 
 cache: yarn
 
-matrix:
+jobs:
   include:
-    - name: "services-api"
+    - stage: "services-api"
+      name: "Deploy: service/api"
+      script: yarn start
       env: PACKAGE_LOCATION=services/api
-    - name: "services-site"
-      env: PACKAGE_LOCATION=services/site
 
-script:
-  - cd $PACKAGE_LOCATION
-  - yarn start
+    - stage: "services-site"
+      name: "Deploy: service/site"
+      script: yarn build
+      env: PACKAGE_LOCATION=services/site
