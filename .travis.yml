@@ -4,6 +4,10 @@ node_js:
 
 cache: yarn
 
+stages:
+  - name: "Deploy: service/api"
+  - name: "Deploy: service/site"
+
 jobs:
   include:
     - stage: "services-api"
