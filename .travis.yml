@@ -9,7 +9,7 @@ services: mongodb
 matrix:
   include:
     - name: "services-api"
-      env: PACKAGE_LOCATION=services/api
+      env: [PACKAGE_LOCATION=services/api NODE_ENV=production MONGO_DSN=mongodb://mongodb:27017/wtq]
     - name: "services-site"
       env: PACKAGE_LOCATION=services/site
 
